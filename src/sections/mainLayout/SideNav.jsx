@@ -709,7 +709,7 @@ const SideNav = ({ collapsed, toggleCollapse, setFolderId }) => {
         >
           <Scrollbar
             style={{
-              height: "82vh",
+              height: "100vh",
               overflowX: "hidden !important",
               overflowY: "auto",
             }}
@@ -718,7 +718,7 @@ const SideNav = ({ collapsed, toggleCollapse, setFolderId }) => {
               <li
                 className="menu-title"
                 style={{
-                  marginTop: "10px",
+                  marginTop: "70px",
                 }}
               >
                 <div
@@ -758,7 +758,7 @@ const SideNav = ({ collapsed, toggleCollapse, setFolderId }) => {
                     <div
                       className="progress my-2 progress-sm"
                       style={{
-                        height: "5px",
+                        height: "7px",
                         borderRadius: "20px",
                         backgroundColor: "#e9ecef",
                       }}
@@ -772,8 +772,8 @@ const SideNav = ({ collapsed, toggleCollapse, setFolderId }) => {
                               subscriptionInfoData?.credits) *
                             100 +
                             "%",
-                          backgroundColor: "#1abc9c",
-                          height: "5px",
+                          backgroundColor: "#f7b84b",
+                          height: "8px",
                         }}
                         aria-valuenow="46"
                         aria-valuemin="0"
@@ -1396,11 +1396,13 @@ const SideNav = ({ collapsed, toggleCollapse, setFolderId }) => {
                                     folder._id === activeFolder
                                       ? "#f1556c"
                                       : "#6e768e",
-                                  fontSize: "15.2px",
+                                  fontSize: "12px",
                                   fontWeight: 500,
                                   margin: "0px",
                                   width: "140px",
+                                  display: "block",
                                   lineHeight: "1.3",
+                                  textTransform: "capitalize",
                                 }}
                                 className="folder-name"
                                 disabled={folderLimitReached} // Disable button if limit is reached
@@ -1408,7 +1410,8 @@ const SideNav = ({ collapsed, toggleCollapse, setFolderId }) => {
                                 {folder.name}
                                 <span
                                   style={{
-                                    fontSize: "15.2px",
+                                    fontSize: "12px",
+                                    textTransform: "capitalize",
                                     color: "#6e768e",
                                     marginLeft: "15px",
                                   }}
@@ -1451,7 +1454,7 @@ const SideNav = ({ collapsed, toggleCollapse, setFolderId }) => {
                             >
                               <FaEllipsisVertical
                                 style={{
-                                  color: "rgb(65, 76, 88)",
+                                  color: "#fff",
                                   cursor: "pointer",
                                 }}
                               />
@@ -1964,7 +1967,7 @@ const SideNav = ({ collapsed, toggleCollapse, setFolderId }) => {
                       >
                         <BiPlus
                           style={{
-                            color: "rgb(65, 76, 88)",
+                            color: "#fff",
                             fontWeight: "bold",
                             fontSize: "1.8rem",
                           }}

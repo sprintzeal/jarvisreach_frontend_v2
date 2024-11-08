@@ -47,18 +47,18 @@
 
 .sidenav {
   position: fixed;
-  top: 80px; /* Below the Topbar */
+  
   width: 240px;
   z-index: 100;
   /* height: calc(100% - 50px); */
   background-color: white;
   color: #6e768e;
-  display: flex;
+  
   flex-direction: column;
   transition: width 0.3s;
   padding-top: 10px;
   text-decoration: none;
-  font-family: "Cerebri Sans,sans-serif";
+  
   overflow-x: hidden !important;
 }
 
@@ -72,6 +72,7 @@
 }
 #side-menu {
   display: flex;
+  background: #333 !important;
   flex-direction: column;
   gap: 6px;
   overflow-x: hidden !important;
@@ -95,10 +96,10 @@
 .sidenav button {
   background: none;
   border: none;
-  color: #6e768e;
   text-align: left;
-  margin: 0 25px 15px 20px;
-  /* width: 100%; */
+      margin: 0 0px 25px 10px;
+      color: #f2f5f7 !important;
+          text-transform: capitalize;
   cursor: pointer;
   border-radius: 4px;
   transition: background-color 0.3s, color 0.3s;
@@ -107,7 +108,7 @@
   gap: 1px;
   font-family: cerebri-sans, sans-serif;
   font-weight: 500;
-  font-size: 15.2px;
+      font-size: 12px !important;
 }
 
 .sidenav button:hover {
@@ -121,6 +122,7 @@
 .sidenav button .icon {
   font-size: 18px; /* Set the icon size */
   margin-right: 10px;
+   
 }
 
 .sidenav.collapsed button .icon {

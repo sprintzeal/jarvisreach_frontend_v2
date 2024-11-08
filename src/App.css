@@ -2877,7 +2877,7 @@ body[data-leftbar-color="gradient"]:not([data-layout-mode="detached"])
 }
 .navbar-custom .topnav-menu .nav-link {
   padding: 0 15px;
-  color: rgba(255, 255, 255, 0.6);
+  color: #333;
   min-width: 32px;
   display: block;
   line-height: 70px;
