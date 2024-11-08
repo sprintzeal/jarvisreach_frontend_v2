@@ -1,0 +1,183 @@
+@font-face {
+  font-family: dripicons-v2;
+  src: url(../src/assets/fonts/dripicons-v2.eot);
+  src: url(../src/assets/fonts/dripicons-v2.eot?#iefix)
+      format("embedded-opentype"),
+    url(../src/assets/fonts/dripicons-v2.woff) format("woff"),
+    url(../src/assets/fonts/dripicons-v2.ttf) format("truetype"),
+    url(../src/assets/fonts/dripicons-v2.svg#dripicons-v2) format("svg");
+  font-weight: 400;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Cerebri Sans,sans-serif";
+  src: url(../src/assets/fonts/cerebrisans-light.eot);
+  src: local("Cerebri-sans Light"),
+    url(../src/assets/fonts/cerebrisans-light.woff) format("woff");
+  font-weight: 300;
+}
+@font-face {
+  font-family: "Cerebri Sans,sans-serif";
+  src: url(../src/assets/fonts/cerebrisans-regular.eot);
+  src: local("Cerebri-sans Regular"),
+    url(../src/assets/fonts/cerebrisans-regular.woff) format("woff");
+  font-weight: 400;
+}
+@font-face {
+  font-family: "Cerebri Sans,sans-serif";
+  src: url(../src/assets/fonts/cerebrisans-medium.eot);
+  src: local("Cerebri-sans Medium"),
+    url(../src/assets/fonts/cerebrisans-medium.woff) format("woff");
+  font-weight: 500;
+}
+@font-face {
+  font-family: "Cerebri Sans,sans-serif";
+  src: url(../src/assets/fonts/cerebrisans-semibold.eot);
+  src: local("Cerebri-sans Semibold"),
+    url(../src/assets/fonts/cerebrisans-semibold.woff) format("woff");
+  font-weight: 600;
+}
+@font-face {
+  font-family: "Cerebri Sans,sans-serif";
+  src: url(../src/assets/fonts/cerebrisans-bold.eot);
+  src: local("Cerebri-sans Bold"),
+    url(../src/assets/fonts/cerebrisans-bold.woff) format("woff");
+  font-weight: 700;
+}
+
+.sidenav {
+  position: fixed;
+  top: 80px; /* Below the Topbar */
+  width: 240px;
+  z-index: 100;
+  /* height: calc(100% - 50px); */
+  background-color: white;
+  color: #6e768e;
+  display: flex;
+  flex-direction: column;
+  transition: width 0.3s;
+  padding-top: 10px;
+  text-decoration: none;
+  font-family: "Cerebri Sans,sans-serif";
+  overflow-x: hidden !important;
+}
+
+.sidenav.collapsed {
+  width: 50px;
+}
+.sidenav.collapsed #side-menu {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+#side-menu {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  overflow-x: hidden !important;
+}
+
+#side-menu li {
+  padding: 10px 10px;
+  margin: 0 4px 0 10px;
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.1);
+  transition: 0.3s;
+  cursor: pointer;
+  list-style-type: none;
+  border-radius: 4px;
+}
+
+#side-menu li:hover {
+  transform: scale(1);
+  transition: 0.3s;
+}
+
+.sidenav button {
+  background: none;
+  border: none;
+  color: #6e768e;
+  text-align: left;
+  margin: 0 25px 15px 20px;
+  /* width: 100%; */
+  cursor: pointer;
+  border-radius: 4px;
+  transition: background-color 0.3s, color 0.3s;
+  display: flex;
+  align-items: center;
+  gap: 1px;
+  font-family: cerebri-sans, sans-serif;
+  font-weight: 500;
+  font-size: 15.2px;
+}
+
+.sidenav button:hover {
+  color: #fa8093;
+}
+
+.sidenav .active {
+  color: #f1556c;
+}
+
+.sidenav button .icon {
+  font-size: 18px; /* Set the icon size */
+  margin-right: 10px;
+}
+
+.sidenav.collapsed button .icon {
+  margin-right: 0;
+}
+
+.sidenav.collapsed button {
+  justify-content: center;
+  margin: 10px 0;
+}
+
+@media (max-width: 960px) {
+  .sidenav {
+    top: 60px; /* Below the Topbar */
+    width: 300px;
+    height: 85%;
+    display: flex;
+    flex-direction: column;
+    padding-top: 30px;
+    padding-inline: 10px;
+    gap: 2px;
+    transition: width 0.3s;
+  }
+
+  .sidenav.collapsed {
+    width: 100%;
+  }
+
+  .sidenav button {
+    background: none;
+    border: none;
+    color: #6e768e;
+    text-align: left;
+    width: 100%;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: background-color 0.3s, color 0.3s;
+    display: flex;
+    align-items: center;
+    font-family: cerebri-sans, sans-serif;
+    font-weight: 500;
+  }
+
+  .sidenav button .icon {
+    font-size: 20px; /* Set the icon size */
+    margin-right: 5px;
+  }
+}
+.folder-container {
+  position: relative;
+}
+
+.hover-edit-menu {
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.folder-container:hover .hover-edit-menu {
+  opacity: 1;
+}

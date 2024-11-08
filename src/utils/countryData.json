@@ -1,0 +1,1502 @@
+[
+  {
+    "id": 166,
+    "name": "Afghanistan",
+    "europe_union_member": null,
+    "code": "AF"
+  },
+  {
+    "id": 59,
+    "name": "Albania",
+    "europe_union_member": null,
+    "code": "AL"
+  },
+  {
+    "id": 85,
+    "name": "Algeria",
+    "europe_union_member": null,
+    "code": "DZ"
+  },
+  {
+    "id": 169,
+    "name": "American Samoa",
+    "europe_union_member": null,
+    "code": "AS"
+  },
+  {
+    "id": 125,
+    "name": "Andorra",
+    "europe_union_member": null,
+    "code": "AD"
+  },
+  {
+    "id": 156,
+    "name": "Angola",
+    "europe_union_member": null,
+    "code": "AO"
+  },
+  {
+    "id": 209,
+    "name": "Anguilla",
+    "europe_union_member": null,
+    "code": "AI"
+  },
+  {
+    "id": 210,
+    "name": "Antarctica",
+    "europe_union_member": null,
+    "code": "AQ"
+  },
+  {
+    "id": 195,
+    "name": "Antigua and Barbuda",
+    "europe_union_member": null,
+    "code": "AG"
+  },
+  {
+    "id": 70,
+    "name": "Argentina",
+    "europe_union_member": null,
+    "code": "AR"
+  },
+  {
+    "id": 72,
+    "name": "Armenia",
+    "europe_union_member": null,
+    "code": "AM"
+  },
+  {
+    "id": 122,
+    "name": "Aruba",
+    "europe_union_member": null,
+    "code": "AW"
+  },
+  {
+    "id": 19,
+    "name": "Australia",
+    "europe_union_member": null,
+    "code": "AU"
+  },
+  {
+    "id": 35,
+    "name": "Austria",
+    "europe_union_member": true,
+    "code": "AT"
+  },
+  {
+    "id": 123,
+    "name": "Azerbaijan",
+    "europe_union_member": null,
+    "code": "AZ"
+  },
+  {
+    "id": 76,
+    "name": "Bahamas",
+    "europe_union_member": null,
+    "code": "BS"
+  },
+  {
+    "id": 118,
+    "name": "Bahrain",
+    "europe_union_member": null,
+    "code": "BH"
+  },
+  {
+    "id": 107,
+    "name": "Bangladesh",
+    "europe_union_member": null,
+    "code": "BD"
+  },
+  {
+    "id": 176,
+    "name": "Barbados",
+    "europe_union_member": null,
+    "code": "BB"
+  },
+  {
+    "id": 12,
+    "name": "Belarus",
+    "europe_union_member": null,
+    "code": "BY"
+  },
+  {
+    "id": 47,
+    "name": "Belgium",
+    "europe_union_member": true,
+    "code": "BE"
+  },
+  {
+    "id": 145,
+    "name": "Belize",
+    "europe_union_member": null,
+    "code": "BZ"
+  },
+  {
+    "id": 129,
+    "name": "Benin",
+    "europe_union_member": null,
+    "code": "BJ"
+  },
+  {
+    "id": 108,
+    "name": "Bermuda",
+    "europe_union_member": null,
+    "code": "BM"
+  },
+  {
+    "id": 170,
+    "name": "Bhutan",
+    "europe_union_member": null,
+    "code": "BT"
+  },
+  {
+    "id": 135,
+    "name": "Bolivia",
+    "europe_union_member": null,
+    "code": "BO"
+  },
+  {
+    "id": 213,
+    "name": "Bonaire, Sint Eustatius and Saba",
+    "europe_union_member": null,
+    "code": "BQ"
+  },
+  {
+    "id": 112,
+    "name": "Bosnia and Herzegovina",
+    "europe_union_member": null,
+    "code": "BA"
+  },
+  {
+    "id": 121,
+    "name": "Botswana",
+    "europe_union_member": null,
+    "code": "BW"
+  },
+  {
+    "id": 214,
+    "name": "Bouvet Island",
+    "europe_union_member": null,
+    "code": "BV"
+  },
+  {
+    "id": 34,
+    "name": "Brazil",
+    "europe_union_member": null,
+    "code": "BR"
+  },
+  {
+    "id": 229,
+    "name": "British Indian Ocean Territory",
+    "europe_union_member": null,
+    "code": "IO"
+  },
+  {
+    "id": 131,
+    "name": "Brunei Darussalam",
+    "europe_union_member": null,
+    "code": "BN"
+  },
+  {
+    "id": 104,
+    "name": "Bulgaria",
+    "europe_union_member": true,
+    "code": "BG"
+  },
+  {
+    "id": 165,
+    "name": "Burkina Faso",
+    "europe_union_member": null,
+    "code": "BF"
+  },
+  {
+    "id": 204,
+    "name": "Burundi",
+    "europe_union_member": null,
+    "code": "BI"
+  },
+  {
+    "id": 217,
+    "name": "Cabo Verde",
+    "europe_union_member": null,
+    "code": "CV"
+  },
+  {
+    "id": 127,
+    "name": "Cambodia",
+    "europe_union_member": null,
+    "code": "KH"
+  },
+  {
+    "id": 63,
+    "name": "Cameroon",
+    "europe_union_member": null,
+    "code": "CM"
+  },
+  {
+    "id": 9,
+    "name": "Canada",
+    "europe_union_member": null,
+    "code": "CA"
+  },
+  {
+    "id": 194,
+    "name": "Cape Verde",
+    "europe_union_member": null,
+    "code": null
+  },
+  {
+    "id": 78,
+    "name": "Cayman Islands",
+    "europe_union_member": null,
+    "code": "KY"
+  },
+  {
+    "id": 203,
+    "name": "Central African Republic",
+    "europe_union_member": null,
+    "code": "CF"
+  },
+  {
+    "id": 245,
+    "name": "Chad",
+    "europe_union_member": null,
+    "code": "TD"
+  },
+  {
+    "id": 74,
+    "name": "Chile",
+    "europe_union_member": null,
+    "code": "CL"
+  },
+  {
+    "id": 6,
+    "name": "China",
+    "europe_union_member": null,
+    "code": "CN"
+  },
+  {
+    "id": 219,
+    "name": "Christmas Island",
+    "europe_union_member": null,
+    "code": "CX"
+  },
+  {
+    "id": 215,
+    "name": "Cocos (Keeling) Islands",
+    "europe_union_member": null,
+    "code": "CC"
+  },
+  {
+    "id": 67,
+    "name": "Colombia",
+    "europe_union_member": null,
+    "code": "CO"
+  },
+  {
+    "id": 192,
+    "name": "Comoros",
+    "europe_union_member": null,
+    "code": "KM"
+  },
+  {
+    "id": 133,
+    "name": "Congo",
+    "europe_union_member": null,
+    "code": "CG"
+  },
+  {
+    "id": 179,
+    "name": "Congo, Democratic Republic of",
+    "europe_union_member": null,
+    "code": "CD"
+  },
+  {
+    "id": 216,
+    "name": "Cook Islands",
+    "europe_union_member": null,
+    "code": "CK"
+  },
+  {
+    "id": 36,
+    "name": "Costa Rica",
+    "europe_union_member": null,
+    "code": "CR"
+  },
+  {
+    "id": 73,
+    "name": "Croatia",
+    "europe_union_member": true,
+    "code": "HR"
+  },
+  {
+    "id": 152,
+    "name": "Cuba",
+    "europe_union_member": null,
+    "code": "CU"
+  },
+  {
+    "id": 218,
+    "name": "Curaçao",
+    "europe_union_member": null,
+    "code": "CW"
+  },
+  {
+    "id": 75,
+    "name": "Cyprus",
+    "europe_union_member": true,
+    "code": "CY"
+  },
+  {
+    "id": 40,
+    "name": "Czech Republic",
+    "europe_union_member": true,
+    "code": "CZ"
+  },
+  {
+    "id": 101,
+    "name": "Côte d'Ivoire",
+    "europe_union_member": null,
+    "code": "CI"
+  },
+  {
+    "id": 39,
+    "name": "Denmark",
+    "europe_union_member": true,
+    "code": "DK"
+  },
+  {
+    "id": 220,
+    "name": "Djibouti",
+    "europe_union_member": null,
+    "code": "DJ"
+  },
+  {
+    "id": 183,
+    "name": "Dominica",
+    "europe_union_member": null,
+    "code": "DM"
+  },
+  {
+    "id": 116,
+    "name": "Dominican Republic",
+    "europe_union_member": null,
+    "code": "DO"
+  },
+  {
+    "id": 66,
+    "name": "Ecuador",
+    "europe_union_member": null,
+    "code": "EC"
+  },
+  {
+    "id": 55,
+    "name": "Egypt",
+    "europe_union_member": null,
+    "code": "EG"
+  },
+  {
+    "id": 147,
+    "name": "El Salvador",
+    "europe_union_member": null,
+    "code": "SV"
+  },
+  {
+    "id": 225,
+    "name": "Equatorial Guinea",
+    "europe_union_member": null,
+    "code": "GQ"
+  },
+  {
+    "id": 222,
+    "name": "Eritrea",
+    "europe_union_member": null,
+    "code": "ER"
+  },
+  {
+    "id": 22,
+    "name": "Estonia",
+    "europe_union_member": true,
+    "code": "EE"
+  },
+  {
+    "id": 119,
+    "name": "Ethiopia",
+    "europe_union_member": null,
+    "code": "ET"
+  },
+  {
+    "id": 159,
+    "name": "Falkland Islands",
+    "europe_union_member": null,
+    "code": "FK"
+  },
+  {
+    "id": 182,
+    "name": "Faroe Islands",
+    "europe_union_member": null,
+    "code": "FO"
+  },
+  {
+    "id": 64,
+    "name": "Fiji",
+    "europe_union_member": null,
+    "code": "FJ"
+  },
+  {
+    "id": 10,
+    "name": "Finland",
+    "europe_union_member": true,
+    "code": "FI"
+  },
+  {
+    "id": 5,
+    "name": "France",
+    "europe_union_member": true,
+    "code": "FR"
+  },
+  {
+    "id": 223,
+    "name": "French Guiana",
+    "europe_union_member": null,
+    "code": "GF"
+  },
+  {
+    "id": 197,
+    "name": "French Polynesia",
+    "europe_union_member": null,
+    "code": "PF"
+  },
+  {
+    "id": 246,
+    "name": "French Southern Territories",
+    "europe_union_member": null,
+    "code": "TF"
+  },
+  {
+    "id": 175,
+    "name": "Gabon",
+    "europe_union_member": null,
+    "code": "GA"
+  },
+  {
+    "id": 201,
+    "name": "Gambia",
+    "europe_union_member": null,
+    "code": "GM"
+  },
+  {
+    "id": 137,
+    "name": "Georgia",
+    "europe_union_member": null,
+    "code": "GE"
+  },
+  {
+    "id": 3,
+    "name": "Germany",
+    "europe_union_member": true,
+    "code": "DE"
+  },
+  {
+    "id": 86,
+    "name": "Ghana",
+    "europe_union_member": null,
+    "code": "GH"
+  },
+  {
+    "id": 140,
+    "name": "Gibraltar",
+    "europe_union_member": null,
+    "code": "GI"
+  },
+  {
+    "id": 38,
+    "name": "Greece",
+    "europe_union_member": true,
+    "code": "GR"
+  },
+  {
+    "id": 193,
+    "name": "Greenland",
+    "europe_union_member": null,
+    "code": "GL"
+  },
+  {
+    "id": 190,
+    "name": "Grenada",
+    "europe_union_member": null,
+    "code": "GD"
+  },
+  {
+    "id": 224,
+    "name": "Guadeloupe",
+    "europe_union_member": null,
+    "code": "GP"
+  },
+  {
+    "id": 111,
+    "name": "Guam",
+    "europe_union_member": null,
+    "code": "GU"
+  },
+  {
+    "id": 120,
+    "name": "Guatemala",
+    "europe_union_member": null,
+    "code": "GT"
+  },
+  {
+    "id": 81,
+    "name": "Guernsey",
+    "europe_union_member": null,
+    "code": "GG"
+  },
+  {
+    "id": 199,
+    "name": "Guinea",
+    "europe_union_member": null,
+    "code": "GN"
+  },
+  {
+    "id": 227,
+    "name": "Guinea-Bissau",
+    "europe_union_member": null,
+    "code": "GW"
+  },
+  {
+    "id": 163,
+    "name": "Guyana",
+    "europe_union_member": null,
+    "code": "GY"
+  },
+  {
+    "id": 162,
+    "name": "Haiti",
+    "europe_union_member": null,
+    "code": "HT"
+  },
+  {
+    "id": 228,
+    "name": "Heard Island and McDonald Islands",
+    "europe_union_member": null,
+    "code": "HM"
+  },
+  {
+    "id": 252,
+    "name": "Holy See",
+    "europe_union_member": null,
+    "code": "VA"
+  },
+  {
+    "id": 173,
+    "name": "Honduras",
+    "europe_union_member": null,
+    "code": "HN"
+  },
+  {
+    "id": 16,
+    "name": "Hong Kong",
+    "europe_union_member": null,
+    "code": "HK"
+  },
+  {
+    "id": 53,
+    "name": "Hungary",
+    "europe_union_member": true,
+    "code": "HU"
+  },
+  {
+    "id": 27,
+    "name": "Iceland",
+    "europe_union_member": null,
+    "code": "IS"
+  },
+  {
+    "id": 4,
+    "name": "India",
+    "europe_union_member": null,
+    "code": "IN"
+  },
+  {
+    "id": 42,
+    "name": "Indonesia",
+    "europe_union_member": null,
+    "code": "ID"
+  },
+  {
+    "id": 79,
+    "name": "Iran",
+    "europe_union_member": null,
+    "code": "IR"
+  },
+  {
+    "id": 26,
+    "name": "Iraq",
+    "europe_union_member": null,
+    "code": "IQ"
+  },
+  {
+    "id": 41,
+    "name": "Ireland",
+    "europe_union_member": true,
+    "code": "IE"
+  },
+  {
+    "id": 100,
+    "name": "Isle of Man",
+    "europe_union_member": null,
+    "code": "IM"
+  },
+  {
+    "id": 20,
+    "name": "Israel",
+    "europe_union_member": null,
+    "code": "IL"
+  },
+  {
+    "id": 32,
+    "name": "Italy",
+    "europe_union_member": true,
+    "code": "IT"
+  },
+  {
+    "id": 143,
+    "name": "Jamaica",
+    "europe_union_member": null,
+    "code": "JM"
+  },
+  {
+    "id": 7,
+    "name": "Japan",
+    "europe_union_member": null,
+    "code": "JP"
+  },
+  {
+    "id": 126,
+    "name": "Jersey",
+    "europe_union_member": null,
+    "code": "JE"
+  },
+  {
+    "id": 92,
+    "name": "Jordan",
+    "europe_union_member": null,
+    "code": "JO"
+  },
+  {
+    "id": 128,
+    "name": "Kazakhstan",
+    "europe_union_member": null,
+    "code": "KZ"
+  },
+  {
+    "id": 28,
+    "name": "Kenya",
+    "europe_union_member": null,
+    "code": "KE"
+  },
+  {
+    "id": 230,
+    "name": "Kiribati",
+    "europe_union_member": null,
+    "code": "KI"
+  },
+  {
+    "id": 90,
+    "name": "Kuwait",
+    "europe_union_member": null,
+    "code": "KW"
+  },
+  {
+    "id": 160,
+    "name": "Kyrgyzstan",
+    "europe_union_member": null,
+    "code": "KG"
+  },
+  {
+    "id": 95,
+    "name": "Lao People's Democratic Republic",
+    "europe_union_member": null,
+    "code": "LA"
+  },
+  {
+    "id": 33,
+    "name": "Latvia",
+    "europe_union_member": true,
+    "code": "LV"
+  },
+  {
+    "id": 54,
+    "name": "Lebanon",
+    "europe_union_member": null,
+    "code": "LB"
+  },
+  {
+    "id": 161,
+    "name": "Lesotho",
+    "europe_union_member": null,
+    "code": "LS"
+  },
+  {
+    "id": 155,
+    "name": "Liberia",
+    "europe_union_member": null,
+    "code": "LR"
+  },
+  {
+    "id": 148,
+    "name": "Libya",
+    "europe_union_member": null,
+    "code": "LY"
+  },
+  {
+    "id": 144,
+    "name": "Liechtenstein",
+    "europe_union_member": null,
+    "code": "LI"
+  },
+  {
+    "id": 98,
+    "name": "Lithuania",
+    "europe_union_member": true,
+    "code": "LT"
+  },
+  {
+    "id": 68,
+    "name": "Luxembourg",
+    "europe_union_member": true,
+    "code": "LU"
+  },
+  {
+    "id": 184,
+    "name": "Macao",
+    "europe_union_member": null,
+    "code": "MO"
+  },
+  {
+    "id": 117,
+    "name": "Macedonia",
+    "europe_union_member": null,
+    "code": "MK"
+  },
+  {
+    "id": 154,
+    "name": "Madagascar",
+    "europe_union_member": null,
+    "code": "MG"
+  },
+  {
+    "id": 174,
+    "name": "Malawi",
+    "europe_union_member": null,
+    "code": "MW"
+  },
+  {
+    "id": 37,
+    "name": "Malaysia",
+    "europe_union_member": null,
+    "code": "MY"
+  },
+  {
+    "id": 158,
+    "name": "Maldives",
+    "europe_union_member": null,
+    "code": "MV"
+  },
+  {
+    "id": 164,
+    "name": "Mali",
+    "europe_union_member": null,
+    "code": "ML"
+  },
+  {
+    "id": 103,
+    "name": "Malta",
+    "europe_union_member": true,
+    "code": "MT"
+  },
+  {
+    "id": 187,
+    "name": "Marshall Islands",
+    "europe_union_member": null,
+    "code": "MH"
+  },
+  {
+    "id": 168,
+    "name": "Martinique",
+    "europe_union_member": null,
+    "code": "MQ"
+  },
+  {
+    "id": 138,
+    "name": "Mauritania",
+    "europe_union_member": null,
+    "code": "MR"
+  },
+  {
+    "id": 87,
+    "name": "Mauritius",
+    "europe_union_member": null,
+    "code": "MU"
+  },
+  {
+    "id": 260,
+    "name": "Mayotte",
+    "europe_union_member": null,
+    "code": "YT"
+  },
+  {
+    "id": 43,
+    "name": "Mexico",
+    "europe_union_member": null,
+    "code": "MX"
+  },
+  {
+    "id": 208,
+    "name": "Micronesia, Federated States of",
+    "europe_union_member": null,
+    "code": "FM"
+  },
+  {
+    "id": 149,
+    "name": "Moldova",
+    "europe_union_member": null,
+    "code": "MD"
+  },
+  {
+    "id": 233,
+    "name": "Monaco",
+    "europe_union_member": null,
+    "code": "MC"
+  },
+  {
+    "id": 124,
+    "name": "Mongolia",
+    "europe_union_member": null,
+    "code": "MN"
+  },
+  {
+    "id": 142,
+    "name": "Montenegro",
+    "europe_union_member": null,
+    "code": "ME"
+  },
+  {
+    "id": 196,
+    "name": "Montserrat",
+    "europe_union_member": null,
+    "code": "MS"
+  },
+  {
+    "id": 83,
+    "name": "Morocco",
+    "europe_union_member": null,
+    "code": "MA"
+  },
+  {
+    "id": 114,
+    "name": "Mozambique",
+    "europe_union_member": null,
+    "code": "MZ"
+  },
+  {
+    "id": 109,
+    "name": "Myanmar",
+    "europe_union_member": null,
+    "code": "MM"
+  },
+  {
+    "id": 105,
+    "name": "Namibia",
+    "europe_union_member": null,
+    "code": "NA"
+  },
+  {
+    "id": 234,
+    "name": "Nauru",
+    "europe_union_member": null,
+    "code": "NR"
+  },
+  {
+    "id": 130,
+    "name": "Nepal",
+    "europe_union_member": null,
+    "code": "NP"
+  },
+  {
+    "id": 15,
+    "name": "Netherlands",
+    "europe_union_member": true,
+    "code": "NL"
+  },
+  {
+    "id": 206,
+    "name": "New Caledonia",
+    "europe_union_member": null,
+    "code": "NC"
+  },
+  {
+    "id": 29,
+    "name": "New Zealand",
+    "europe_union_member": null,
+    "code": "NZ"
+  },
+  {
+    "id": 157,
+    "name": "Nicaragua",
+    "europe_union_member": null,
+    "code": "NI"
+  },
+  {
+    "id": 186,
+    "name": "Niger",
+    "europe_union_member": null,
+    "code": "NE"
+  },
+  {
+    "id": 50,
+    "name": "Nigeria",
+    "europe_union_member": null,
+    "code": "NG"
+  },
+  {
+    "id": 235,
+    "name": "Niue",
+    "europe_union_member": null,
+    "code": "NU"
+  },
+  {
+    "id": 178,
+    "name": "Norfolk Island",
+    "europe_union_member": null,
+    "code": "NF"
+  },
+  {
+    "id": 198,
+    "name": "North Korea",
+    "europe_union_member": null,
+    "code": "KP"
+  },
+  {
+    "id": 181,
+    "name": "Northern Mariana Islands",
+    "europe_union_member": null,
+    "code": "MP"
+  },
+  {
+    "id": 51,
+    "name": "Norway",
+    "europe_union_member": null,
+    "code": "NO"
+  },
+  {
+    "id": 113,
+    "name": "Oman",
+    "europe_union_member": null,
+    "code": "OM"
+  },
+  {
+    "id": 69,
+    "name": "Pakistan",
+    "europe_union_member": null,
+    "code": "PK"
+  },
+  {
+    "id": 239,
+    "name": "Palau",
+    "europe_union_member": null,
+    "code": "PW"
+  },
+  {
+    "id": 151,
+    "name": "Palestine, State of",
+    "europe_union_member": null,
+    "code": "PS"
+  },
+  {
+    "id": 62,
+    "name": "Panama",
+    "europe_union_member": null,
+    "code": "PA"
+  },
+  {
+    "id": 189,
+    "name": "Papua New Guinea",
+    "europe_union_member": null,
+    "code": "PG"
+  },
+  {
+    "id": 150,
+    "name": "Paraguay",
+    "europe_union_member": null,
+    "code": "PY"
+  },
+  {
+    "id": 23,
+    "name": "Peru",
+    "europe_union_member": null,
+    "code": "PE"
+  },
+  {
+    "id": 56,
+    "name": "Philippines",
+    "europe_union_member": null,
+    "code": "PH"
+  },
+  {
+    "id": 237,
+    "name": "Pitcairn",
+    "europe_union_member": null,
+    "code": "PN"
+  },
+  {
+    "id": 8,
+    "name": "Poland",
+    "europe_union_member": true,
+    "code": "PL"
+  },
+  {
+    "id": 46,
+    "name": "Portugal",
+    "europe_union_member": true,
+    "code": "PT"
+  },
+  {
+    "id": 134,
+    "name": "Puerto Rico",
+    "europe_union_member": null,
+    "code": "PR"
+  },
+  {
+    "id": 91,
+    "name": "Qatar",
+    "europe_union_member": null,
+    "code": "QA"
+  },
+  {
+    "id": 200,
+    "name": "Reunion",
+    "europe_union_member": null,
+    "code": "RE"
+  },
+  {
+    "id": 60,
+    "name": "Romania",
+    "europe_union_member": true,
+    "code": "RO"
+  },
+  {
+    "id": 21,
+    "name": "Russian Federation",
+    "europe_union_member": null,
+    "code": "RU"
+  },
+  {
+    "id": 97,
+    "name": "Rwanda",
+    "europe_union_member": null,
+    "code": "RW"
+  },
+  {
+    "id": 212,
+    "name": "Saint Barthélemy",
+    "europe_union_member": null,
+    "code": "BL"
+  },
+  {
+    "id": 241,
+    "name": "Saint Helena, Ascension and Tristan da Cunha",
+    "europe_union_member": null,
+    "code": "SH"
+  },
+  {
+    "id": 180,
+    "name": "Saint Kitts and Nevis",
+    "europe_union_member": null,
+    "code": "KN"
+  },
+  {
+    "id": 202,
+    "name": "Saint Lucia",
+    "europe_union_member": null,
+    "code": "LC"
+  },
+  {
+    "id": 236,
+    "name": "Saint Pierre and Miquelon",
+    "europe_union_member": null,
+    "code": "PM"
+  },
+  {
+    "id": 253,
+    "name": "Saint Vincent and the Grenadines",
+    "europe_union_member": null,
+    "code": "VC"
+  },
+  {
+    "id": 205,
+    "name": "Saint-Martin (France)",
+    "europe_union_member": null,
+    "code": "MF"
+  },
+  {
+    "id": 258,
+    "name": "Samoa",
+    "europe_union_member": null,
+    "code": "WS"
+  },
+  {
+    "id": 207,
+    "name": "San Marino",
+    "europe_union_member": null,
+    "code": "SM"
+  },
+  {
+    "id": 188,
+    "name": "Sao Tome and Principe",
+    "europe_union_member": null,
+    "code": "ST"
+  },
+  {
+    "id": 77,
+    "name": "Saudi Arabia",
+    "europe_union_member": null,
+    "code": "SA"
+  },
+  {
+    "id": 110,
+    "name": "Senegal",
+    "europe_union_member": null,
+    "code": "SN"
+  },
+  {
+    "id": 84,
+    "name": "Serbia",
+    "europe_union_member": null,
+    "code": "RS"
+  },
+  {
+    "id": 141,
+    "name": "Seychelles",
+    "europe_union_member": null,
+    "code": "SC"
+  },
+  {
+    "id": 80,
+    "name": "Sierra Leone",
+    "europe_union_member": null,
+    "code": "SL"
+  },
+  {
+    "id": 31,
+    "name": "Singapore",
+    "europe_union_member": null,
+    "code": "SG"
+  },
+  {
+    "id": 244,
+    "name": "Sint Maarten (Dutch part)",
+    "europe_union_member": null,
+    "code": "SX"
+  },
+  {
+    "id": 65,
+    "name": "Slovakia",
+    "europe_union_member": true,
+    "code": "SK"
+  },
+  {
+    "id": 52,
+    "name": "Slovenia",
+    "europe_union_member": true,
+    "code": "SI"
+  },
+  {
+    "id": 240,
+    "name": "Solomon Islands",
+    "europe_union_member": null,
+    "code": "SB"
+  },
+  {
+    "id": 172,
+    "name": "Somalia",
+    "europe_union_member": null,
+    "code": "SO"
+  },
+  {
+    "id": 14,
+    "name": "South Africa",
+    "europe_union_member": null,
+    "code": "ZA"
+  },
+  {
+    "id": 226,
+    "name": "South Georgia and the South Sandwich Islands",
+    "europe_union_member": null,
+    "code": "GS"
+  },
+  {
+    "id": 44,
+    "name": "South Korea",
+    "europe_union_member": null,
+    "code": "KR"
+  },
+  {
+    "id": 243,
+    "name": "South Sudan",
+    "europe_union_member": null,
+    "code": "SS"
+  },
+  {
+    "id": 18,
+    "name": "Spain",
+    "europe_union_member": true,
+    "code": "ES"
+  },
+  {
+    "id": 102,
+    "name": "Sri Lanka",
+    "europe_union_member": null,
+    "code": "LK"
+  },
+  {
+    "id": 61,
+    "name": "Sudan",
+    "europe_union_member": null,
+    "code": "SD"
+  },
+  {
+    "id": 177,
+    "name": "Suriname",
+    "europe_union_member": null,
+    "code": "SR"
+  },
+  {
+    "id": 242,
+    "name": "Svalbard and Jan Mayen",
+    "europe_union_member": null,
+    "code": "SJ"
+  },
+  {
+    "id": 153,
+    "name": "Swaziland",
+    "europe_union_member": null,
+    "code": "SZ"
+  },
+  {
+    "id": 24,
+    "name": "Sweden",
+    "europe_union_member": true,
+    "code": "SE"
+  },
+  {
+    "id": 11,
+    "name": "Switzerland",
+    "europe_union_member": null,
+    "code": "CH"
+  },
+  {
+    "id": 136,
+    "name": "Syria",
+    "europe_union_member": null,
+    "code": "SY"
+  },
+  {
+    "id": 30,
+    "name": "Taiwan",
+    "europe_union_member": null,
+    "code": "TW"
+  },
+  {
+    "id": 167,
+    "name": "Tajikistan",
+    "europe_union_member": null,
+    "code": "TJ"
+  },
+  {
+    "id": 99,
+    "name": "Tanzania",
+    "europe_union_member": null,
+    "code": "TZ"
+  },
+  {
+    "id": 82,
+    "name": "Thailand",
+    "europe_union_member": null,
+    "code": "TH"
+  },
+  {
+    "id": 248,
+    "name": "Timor-Leste",
+    "europe_union_member": null,
+    "code": "TL"
+  },
+  {
+    "id": 132,
+    "name": "Togo",
+    "europe_union_member": null,
+    "code": "TG"
+  },
+  {
+    "id": 247,
+    "name": "Tokelau",
+    "europe_union_member": null,
+    "code": "TK"
+  },
+  {
+    "id": 249,
+    "name": "Tonga",
+    "europe_union_member": null,
+    "code": "TO"
+  },
+  {
+    "id": 71,
+    "name": "Trinidad and Tobago",
+    "europe_union_member": null,
+    "code": "TT"
+  },
+  {
+    "id": 115,
+    "name": "Tunisia",
+    "europe_union_member": null,
+    "code": "TN"
+  },
+  {
+    "id": 17,
+    "name": "Turkey",
+    "europe_union_member": null,
+    "code": "TR"
+  },
+  {
+    "id": 191,
+    "name": "Turkmenistan",
+    "europe_union_member": null,
+    "code": "TM"
+  },
+  {
+    "id": 146,
+    "name": "Turks and Caicos Islands",
+    "europe_union_member": null,
+    "code": "TC"
+  },
+  {
+    "id": 250,
+    "name": "Tuvalu",
+    "europe_union_member": null,
+    "code": "TV"
+  },
+  {
+    "id": 45,
+    "name": "Uganda",
+    "europe_union_member": null,
+    "code": "UG"
+  },
+  {
+    "id": 13,
+    "name": "Ukraine",
+    "europe_union_member": null,
+    "code": "UA"
+  },
+  {
+    "id": 48,
+    "name": "United Arab Emirates",
+    "europe_union_member": null,
+    "code": "AE"
+  },
+  {
+    "id": 1,
+    "name": "United Kingdom",
+    "europe_union_member": null,
+    "code": "GB"
+  },
+  {
+    "id": 2,
+    "name": "United States",
+    "europe_union_member": null,
+    "code": "US"
+  },
+  {
+    "id": 251,
+    "name": "United States Minor Outlying Islands",
+    "europe_union_member": null,
+    "code": "UM"
+  },
+  {
+    "id": 88,
+    "name": "Uruguay",
+    "europe_union_member": null,
+    "code": "UY"
+  },
+  {
+    "id": 171,
+    "name": "Uzbekistan",
+    "europe_union_member": null,
+    "code": "UZ"
+  },
+  {
+    "id": 256,
+    "name": "Vanuatu",
+    "europe_union_member": null,
+    "code": "VU"
+  },
+  {
+    "id": 93,
+    "name": "Venezuela",
+    "europe_union_member": null,
+    "code": "VE"
+  },
+  {
+    "id": 57,
+    "name": "Vietnam",
+    "europe_union_member": null,
+    "code": "VN"
+  },
+  {
+    "id": 254,
+    "name": "Virgin Islands, British",
+    "europe_union_member": null,
+    "code": "VG"
+  },
+  {
+    "id": 255,
+    "name": "Virgin Islands, U.S.",
+    "europe_union_member": null,
+    "code": "VI"
+  },
+  {
+    "id": 257,
+    "name": "Wallis and Futuna",
+    "europe_union_member": null,
+    "code": "WF"
+  },
+  {
+    "id": 221,
+    "name": "Western Sahara",
+    "europe_union_member": null,
+    "code": "EH"
+  },
+  {
+    "id": 259,
+    "name": "Yemen",
+    "europe_union_member": null,
+    "code": "YE"
+  },
+  {
+    "id": 139,
+    "name": "Zambia",
+    "europe_union_member": null,
+    "code": "ZM"
+  },
+  {
+    "id": 94,
+    "name": "Zimbabwe",
+    "europe_union_member": null,
+    "code": "ZW"
+  },
+  {
+    "id": 211,
+    "name": "Åland Islands",
+    "europe_union_member": null,
+    "code": "AX"
+  }
+]
