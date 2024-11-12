@@ -43,7 +43,7 @@ const Home = ({ collapsed }) => {
                 <div className="row">
                     <div className="col-3">
                         <div className="avatar-eg rounded bg-soft-primary">
-                            <img src="" width="50" height="50" />
+                            <img src="https://d2ds8yldqp7gxv.cloudfront.net/archive.png" width="50" height="50" />
                         </div>
                     </div>
                     <div className="col-9">
@@ -77,7 +77,7 @@ const Home = ({ collapsed }) => {
                 <div className="row">
                     <div className="col-3">
                         <div className="avatar-eg rounded bg-soft-primary">
-                            <img src="" width="50" height="50" />
+                            <img src="https://d2ds8yldqp7gxv.cloudfront.net/management.png" width="50" height="50" />
                         </div>
                     </div>
                     <div className="col-9">
