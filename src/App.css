@@ -56281,7 +56281,7 @@ a.banner-btn{
   background: #FFFFFF;
   box-shadow: 0px 1px 0px #E7E9EA, 0px 2px 6px rgba(65, 76, 88, 0.14);
   border-radius: 6px;
-  padding: 15px;
+  padding: 15px !important;
   margin-top: 8px;
   font-size: 12px;
 }
@@ -56353,7 +56353,7 @@ a.banner-btn{
 }
 
 .also-top-list ul li{
-  font-size: 14px;
+  font-size: 12px !important;
   font-weight: 700;
   color: #414c58;
   line-height: 36px;
@@ -56362,7 +56362,7 @@ a.banner-btn{
 .also-top-list ul li i{
   color: #ff000d;
   margin-right: 5px;
-  font-size: 18px;
+  font-size: 15px;
 }
 
 .also-btm-list ul{
@@ -58530,7 +58530,106 @@ a.banner-btn:hover{
     font-size: 14px;
     font-weight: 700;
 }
+.avatar-eg{
+  width: 5.5rem;
+  height: 5.5rem;
+  text-align: center;
+  line-height: 5.5rem;
+}
 
+.ticking {
+  background-color: #ff000d;
+    width: 35px;
+    height: 35px;
+    font-size: 15px;
+    font-weight: 600;
+    text-align: center;
+    line-height: 39px;
+    color: #fff;
+    position: relative;
+    top: -10px;
+    left: -10px;
+}
+.action-required {
+  border-radius: 2px;
+  width: 135px;
+  float: right;
+  font-size: 12px;
+  padding: 0px 20px;
+  font-style: normal;
+  font-weight: 700;
+  background: #fff6ec;
+  margin-left: 8px;
+  color: #ff000d;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  text-align: center;
+}
+.widgets-post{
+  position: relative;
+  top: -40px;
+}
+
+.install{
+  font-size: 14px;
+  font-weight: 500;
+}
+.extension_installed p{
+  font-size: 12px;
+    color: #333 !important;
+    font-weight: 500;
+}
+.extension_installed .card-body
+{
+  padding: 10px !important;
+}
+.extension_installed h3{
+  color: #000 !important;
+  font-weight: 700;
+}
+.extension_installed_a{
+  background: red;
+    padding: 8px;
+    color: #fff;
+    border-radius: 5px;
+}
+.extension_installed_a:hover{
+  background: #333;
+  padding: 8px;
+    color: #fff;
+    border-radius: 5px;
+  
+}
+.extension_installed_a {
+  animation: blinker 2s linear infinite;
+}
+@keyframes blinker {
+  50% {
+    opacity: 0;
+  }
+}
+.extension_installed_ab {
+  animation: blinker 3s linear infinite;
+}
+
+@keyframes blinker {
+  50% {
+    opacity: 0;
+  }
+}
+.extension_installed_ab
+{
+  color: #6658dd;
+    font-weight: 600;
+}
+.tickingnd
+{
+  background-color: #ddd !important;
+}
 .free-price-top {
     border-bottom: 1px solid #e7e9ea;
 }
@@ -58548,9 +58647,11 @@ a.banner-btn:hover{
 .also-top-list ul{
     list-style: none;
 }
-
+.css-mhc70k-MuiGrid-root>.MuiGrid-item {
+  padding-left: 10px !important;
+}
 .also-top-list ul li{
-    font-size: 14px;
+  font-size: 12px !important;
     font-weight: 700;
     color: #414c58;
     line-height: 36px;

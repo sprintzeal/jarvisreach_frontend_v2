@@ -44,14 +44,29 @@
     url(../src/assets/fonts/cerebrisans-bold.woff) format("woff");
   font-weight: 700;
 }
-
+.css-1fvh6xe-MuiPaper-root-MuiAccordion-root {
+	background-color: #333333 !important;
+}
+.css-1eaw1ci-MuiButtonBase-root-MuiAccordionSummary-root
+{
+	    background-color: #333333 !important;
+}
+.css-eqpfi5-MuiAccordionSummary-content {
+	 background-color: #333333 !important;
+}
+.css-1dnfn4n-MuiButtonBase-root-MuiAccordionSummary-root {
+	background-color: #333333 !important;
+}
+.css-i4bv87-MuiSvgIcon-root {
+	    color: #ddd !important;
+}
 .sidenav {
   position: fixed;
   
   width: 240px;
   z-index: 100;
   /* height: calc(100% - 50px); */
-  background-color: white;
+  background-color: #333333;
   color: #6e768e;
   
   flex-direction: column;
@@ -104,6 +119,7 @@
   border-radius: 4px;
   transition: background-color 0.3s, color 0.3s;
   display: flex;
+      line-height: 20px;
   align-items: center;
   gap: 1px;
   font-family: cerebri-sans, sans-serif;

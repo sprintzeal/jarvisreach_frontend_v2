@@ -306,7 +306,8 @@ const SideNav = ({ collapsed, toggleCollapse, setFolderId }) => {
       <div
         className={`sidenav ${collapsed ? "collapsed" : ""}`}
         style={{
-          height: "80vh",
+        	top:"68px",
+          height: "100vh",
           overflowX: "hidden",
           paddingRight: "10px",
         }}

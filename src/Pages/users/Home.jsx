@@ -24,6 +24,79 @@ const Home = ({ collapsed }) => {
           {/* <!-- Start Content--> */}
           <div className="container-fluid">
             {/* <!-- start page title --> */}
+            
+            <div className="row mt-1 extension_installed">
+    	<div className="col-lg-6">
+       
+        <div className="card">
+            <div className="card-body">
+                <div className="ticking">
+                    01
+                </div>
+                <div className="card-widgets widgets-post">
+                    <a href="#" data-toggle="remove"><i className="mdi mdi-close"></i></a>
+                   
+                </div>
+                 <div data-v-6510c040=""><div data-v-6510c040="" className="action-required"><span data-v-6510c040="">Action required</span></div></div>
+
+                <div id="cardCollpase1" className="collapse show">
+                <div className="row">
+                    <div className="col-3">
+                        <div className="avatar-eg rounded bg-soft-primary">
+                            <img src="" width="50" height="50" />
+                        </div>
+                    </div>
+                    <div className="col-9">
+                        <div className="">
+                            <h3 className="text-dark mt-1 mb-2 font-15">Install Extension</h3>
+                            <p className="text-muted mb-1">
+                            <a href="">Watch tutorial</a> to learn how to find emails and extract leads directly from <strong>LinkedIn</strong>.
+                            </p>
+                            <a target="_blank" href="https://jarvisreach.io/install-extension" className="install extension_installed_a">Install <i className="fa-solid fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+                </div>
+            </div>
+        </div> 
+    </div>
+
+    <div className="col-lg-6">
+       
+        <div className="card">
+            <div className="card-body">
+                <div className="ticking tickingnd">
+                    02
+                </div>
+                <div className="card-widgets widgets-post">
+                    <a href="#" data-toggle="remove"><i className="mdi mdi-close"></i></a>
+                </div>
+                
+<div data-v-6510c040=""><div data-v-6510c040="" className="action-required"><span data-v-6510c040="">Action required</span></div></div>
+                <div id="cardCollpase1" className="collapse show">
+                <div className="row">
+                    <div className="col-3">
+                        <div className="avatar-eg rounded bg-soft-primary">
+                            <img src="" width="50" height="50" />
+                        </div>
+                    </div>
+                    <div className="col-9">
+                        <div className="">
+                            <h3 className="text-dark mt-1 mb-2 font-15">Let's Get Started with Our Extension!</h3>
+                            <p className="text-muted mb-1">
+                            Unleash the Power of Our Extension! Let's add contacts on LinkedIn together.
+                            </p>
+                            <a target="_blank" href="https://jarvisreach.io/install-extension" className="install extension_installed_ab"><i className="fa-solid fa-circle-exclamation"></i> You need to install the extension first</a>
+                        </div>
+                    </div>
+                </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
             <div className="row">
               <div className="col-12">
                 <div className="page-title-box">
