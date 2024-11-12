@@ -58550,12 +58550,15 @@ a.banner-btn:hover{
     top: -10px;
     left: -10px;
 }
+.extension_installed_dv .card-body {
+  padding: 17px !important;
+}
 .action-required {
   border-radius: 2px;
   width: 135px;
   float: right;
   font-size: 12px;
-  padding: 0px 20px;
+  
   font-style: normal;
   font-weight: 700;
   background: #fff6ec;
@@ -58585,7 +58588,7 @@ a.banner-btn:hover{
 }
 .extension_installed .card-body
 {
-  padding: 10px !important;
+  padding: 10px;
 }
 .extension_installed h3{
   color: #000 !important;

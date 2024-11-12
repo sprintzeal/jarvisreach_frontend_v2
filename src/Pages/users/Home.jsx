@@ -37,7 +37,7 @@ const Home = ({ collapsed }) => {
                     <a href="#" data-toggle="remove"><i className="mdi mdi-close"></i></a>
                    
                 </div>
-                 <div data-v-6510c040=""><div data-v-6510c040="" className="action-required"><span data-v-6510c040="">Action required</span></div></div>
+                 <div data-v-6510c040=""><div data-v-6510c040="" className="action-required"><span data-v-6510c040="">  <i class="fa fa-warning"></i>  Action required</span></div></div>
 
                 <div id="cardCollpase1" className="collapse show">
                 <div className="row">
@@ -61,7 +61,7 @@ const Home = ({ collapsed }) => {
         </div> 
     </div>
 
-    <div className="col-lg-6">
+    <div className="col-lg-6 extension_installed_dv">
        
         <div className="card">
             <div className="card-body">
@@ -72,7 +72,7 @@ const Home = ({ collapsed }) => {
                     <a href="#" data-toggle="remove"><i className="mdi mdi-close"></i></a>
                 </div>
                 
-<div data-v-6510c040=""><div data-v-6510c040="" className="action-required"><span data-v-6510c040="">Action required</span></div></div>
+{/*<div data-v-6510c040=""><div data-v-6510c040="" className="action-required"><span data-v-6510c040="">  <i class="fa fa-warning"></i> Action required</span></div></div>*/}
                 <div id="cardCollpase1" className="collapse show">
                 <div className="row">
                     <div className="col-3">
