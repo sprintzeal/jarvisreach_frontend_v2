@@ -17,6 +17,7 @@ import linkedin from "react-linkedin-login-oauth2/assets/linkedin.png";
 import { sendMessageToExtension } from "../../utils/timeAgo";
 import axios from "axios";
 import {Helmet} from "react-helmet";
+
 const Register = () => {
   const [termAndCondition, setTermAndCondition] = useState(false);
   const isSmallScreen = useMediaQuery((theme) => theme.breakpoints.down("md"));

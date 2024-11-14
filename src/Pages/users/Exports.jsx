@@ -186,7 +186,7 @@ const Exports = ({ collapsed }) => {
 									                    <img src="https://d2ds8yldqp7gxv.cloudfront.net/install-extent.png" width="200" height="190" />
 									                    <h4>You haven't exported any contact yet!</h4>
 									                    <p>Your exported files will appear here for easy access anytime.</p>
-									                </div>
+									                </div> 
 									            </div>
 									        </div>
 									    </div>

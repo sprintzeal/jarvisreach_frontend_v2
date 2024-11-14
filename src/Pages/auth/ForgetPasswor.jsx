@@ -31,6 +31,7 @@ import { useForgetPasswordMutation } from "../../slices/adminSlice";
 
 import {Helmet} from "react-helmet";
 
+
 const ForgetPassword = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
