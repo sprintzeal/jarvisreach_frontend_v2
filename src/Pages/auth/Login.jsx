@@ -31,6 +31,9 @@ import { Box, useMediaQuery } from "@mui/system";
 import axios from "axios";
 import { LocationCitySharp } from "@mui/icons-material";
 
+
+import {Helmet} from "react-helmet";
+
 const Login = () => {
   const isSmallScreen = useMediaQuery((theme) => theme.breakpoints.down("sm"));
   const navigate = useNavigate();
@@ -345,7 +348,7 @@ const Login = () => {
       res.result.role === "customer" ||
       res.result.role === "teammember"
     ) {
-      navigate("/folder");
+      navigate("/home");
     }
     toast.success("Login successful");
   };
@@ -445,7 +448,7 @@ const Login = () => {
         auth.result.role === "customer" ||
         auth.result.role === "teammember"
       ) {
-        navigate("/folder");
+        navigate("/home");
       }
     }
   }, [navigate]);
@@ -557,8 +560,17 @@ const Login = () => {
   }, []);
 
   return (
+  	
     <div>
       <div className="wrapper">
+       
+      <Helmet>
+        <title>Jarvis Reach Login Page</title>
+        <meta
+          name="description"
+          content="You can login to your Jarvis Reach account to access the platform regularly, multiple times. You can reset the password if you forget the password."
+        />
+      </Helmet>
         <section id="topNav">
           <nav className="navbar navbar-expand-lg fixed-top">
             <div className="container-fluid">

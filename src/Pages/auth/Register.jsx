@@ -16,7 +16,7 @@ import linkedin from "react-linkedin-login-oauth2/assets/linkedin.png";
 
 import { sendMessageToExtension } from "../../utils/timeAgo";
 import axios from "axios";
-
+import {Helmet} from "react-helmet";
 const Register = () => {
   const [termAndCondition, setTermAndCondition] = useState(false);
   const isSmallScreen = useMediaQuery((theme) => theme.breakpoints.down("md"));
@@ -504,6 +504,13 @@ const Register = () => {
 
   return (
     <div className="wrapper">
+    <Helmet>
+        <title>Sign up or Register for free and access Jarvis Reach</title>
+        <meta
+          name="description"
+          content="You can sign up or Register for free and access Jarvis Reach free plan without any credit or debit card. You will get free 100 credit almost every month."
+        />
+      </Helmet>
       <section id="topNav">
         <nav className="navbar navbar-expand-lg fixed-top">
           <div className="container-fluid">

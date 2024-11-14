@@ -58576,7 +58576,10 @@ a.banner-btn:hover{
   position: relative;
   top: -40px;
 }
-
+.css-tedaky
+{
+  background-color: rgb(51, 51, 51) !important;
+}
 .install{
   font-size: 14px;
   font-weight: 500;

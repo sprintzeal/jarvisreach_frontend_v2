@@ -29,6 +29,8 @@ import { Box } from "@mui/system";
 import { FaArrowLeft } from "react-icons/fa6";
 import { useForgetPasswordMutation } from "../../slices/adminSlice";
 
+import {Helmet} from "react-helmet";
+
 const ForgetPassword = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -91,6 +93,13 @@ const ForgetPassword = () => {
   return (
     <div>
       <div className="wrapper">
+      <Helmet>
+        <title>Jarvis Reach Forgot Password Page</title>
+        <meta
+          name="description"
+          content="You can enter your email or user ID to reset your password and access your Jarvis Reach account. Note, always use registered email address."
+        />
+      </Helmet>
         <section id="topNav">
           <nav className="navbar navbar-expand-lg fixed-top">
             <div className="container-fluid">
