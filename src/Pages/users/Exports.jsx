@@ -177,7 +177,23 @@ const Exports = ({ collapsed }) => {
                               <TableBody>
                                 <TableRow>
                                   <TableCell colSpan={6}>
-                                    No Data Found
+                                    <div className="row">
+									    <div className="col-lg-12">
+									       
+									        <div className="card">
+									            <div className="card-body">
+									                <div className="install-extention">
+									                    <img src="https://d2ds8yldqp7gxv.cloudfront.net/install-extent.png" width="200" height="190">
+									                    <h4>You haven't exported any contact yet!</h4>
+									                    <p>Your exported files will appear here for easy access anytime.</p>
+									                </div>
+									            </div>
+									        </div>
+									    </div>
+									
+									
+									
+									</div>
                                   </TableCell>
                                 </TableRow>
                               </TableBody>
