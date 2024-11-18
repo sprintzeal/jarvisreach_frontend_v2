@@ -1129,7 +1129,7 @@ const SideNav = ({ collapsed, toggleCollapse, setFolderId }) => {
                       width: "100%",
                       opacity: "0.5",
                       height: collapsed ? "40px" : "50px",
-                      backgroundColor: "rgb(255 255 255)",
+                     
                       zIndex: "100",
                       display: "flex",
                       alignItems: "center",
@@ -1185,7 +1185,7 @@ const SideNav = ({ collapsed, toggleCollapse, setFolderId }) => {
                       style={{
                         marginLeft: "auto",
                         color: "gray",
-                                                  fontSize: "15.2px",
+                        fontSize: "15.2px",
 
                       }}
                     />
@@ -1993,13 +1993,14 @@ const SideNav = ({ collapsed, toggleCollapse, setFolderId }) => {
                         <div
                           style={{
                             position: "absolute",
-                            right: collapsed ? "-10%" : "10%",
-                            top: collapsed ? "-20%" : "-10%",
-                            left: collapsed ? "85%" : "0%",
+                            right: collapsed ? "-10%" : "20%",
+                            top: collapsed ? "-20%" : "4%",
+                            left: collapsed ? "85%" : "10%",
                             width: collapsed ? "45%" : "190%",
                             opacity: "0.5",
+                            color:"#7d86a3",
                             height: "40px",
-                            backgroundColor: "rgb(255 255 255)",
+                           fontSize:"15px",
                             zIndex: 100000000,
                             display: "flex",
                             alignItems: "center",
@@ -2077,7 +2078,7 @@ const SideNav = ({ collapsed, toggleCollapse, setFolderId }) => {
                     width: "100%",
                     opacity: "0.5",
                     height: "40px",
-                    backgroundColor: "rgb(255 255 255)",
+                   
                     zIndex: "100000000",
                     display: "flex",
                     alignItems: "center",
