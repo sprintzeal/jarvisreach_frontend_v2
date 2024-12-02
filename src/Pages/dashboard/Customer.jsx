@@ -38,7 +38,9 @@ import {
   useGetUserCustomersQuery,
   useInviteAndResendCustomerMutation,
   useUpdateCustomerMutation,
+  useGetAllPlansQuery,
 } from "../../slices/adminSlice";
+
 
 const Customer = ({ collapsed }) => {
   const isSmallScreen = useMediaQuery((theme) => theme.breakpoints.down("sm"));
@@ -81,6 +83,19 @@ const Customer = ({ collapsed }) => {
     accordion5: false,
   });
 
+  const {
+    data: getPackages,
+    error: getProfilesError,
+    isLoading: getProfilesLoading,
+  } = useGetAllPlansQuery({
+    page: 1,
+    limit: 100,
+  });
+
+  const [packagePeriod, setPackagePeriod] = useState('');
+  const handlePackagePeriodChange = (e) => {
+    setPackagePeriod(e.target.value);
+  };
   const [openEditCustomer, setOpenEditCustomer] = useState(false);
   const [editFirstName, setEditFirstName] = useState("");
   const [editLastName, setEditLastName] = useState("");
@@ -118,9 +133,9 @@ const Customer = ({ collapsed }) => {
   const [currentPage, setCurrentPage] = useState(customers?.page || 1);
   const [itemsPerPage, setItemsPerPage] = useState(
     itemsPerPageOptions[
-      itemsPerPageOptions.indexOf(customers?.limit) !== -1
-        ? itemsPerPageOptions.indexOf(customers?.limit)
-        : 0
+    itemsPerPageOptions.indexOf(customers?.limit) !== -1
+      ? itemsPerPageOptions.indexOf(customers?.limit)
+      : 0
     ]
   );
 
@@ -177,6 +192,8 @@ const Customer = ({ collapsed }) => {
       .required("Email is required"),
     phone: Yup.string().required("Phone number is required"),
     location: Yup.string().required("Location is required"),
+    plan: Yup.string().required("Plan is required"),
+    packagePeriod: Yup.string().required("Package Period is required"),
   });
 
   const countries = [
@@ -447,42 +464,61 @@ const Customer = ({ collapsed }) => {
 
   // }, []);
   const handleSubmit = async (values, { setSubmitting }) => {
+    console.log("Form Values Submitted:", values); // Log all form values
+
+    // Setting default values for some parameters
     setDefaults({
       key: "AIzaSyCXKqio1YfC7ZI8C-vkQdsfiIg4FoNOwMc",
       language: "en",
       region: "es",
     });
+
+    // If location is provided, geocode the location to get lat and lng
     if (values.location) {
       fromAddress(values.location)
         .then(async ({ results }) => {
           const { lat, lng } = results[0].geometry.location;
+
           try {
+            // Prepare the data object with all the necessary fields
             let data = {
-              ...values,
-              role: "customer",
-              termsConditions: false,
-              password: "12345678",
+              ...values, // Spread the values from the form
+              role: "customer", // Role for the customer
+              termsConditions: false, // Default termsConditions value
+              password: "12345678", // Default password
               location: {
-                country: values.location,
-                lat: lat,
-                lon: lng,
+                country: values.location, // Country (location) from the form
+                lat: lat, // Latitude from geocoding
+                lon: lng, // Longitude from geocoding
               },
+              // packagePeriod: values.packagePeriod,
             };
+
+            console.log('Data to send to backend:', data); // Log the data to be sent to the backend
+
+            // Send the data to the backend
             await createCustomer({ body: data }).unwrap();
+
+            // If the request is successful, show a success toast
             toast.success(
-              "Customer added successfully. If you want to send him email invitation, click on invite button"
+              "Customer added successfully. If you want to send him an email invitation, click on the invite button"
             );
+
+            // Remove authToken from sessionStorage (if needed for session)
             sessionStorage.removeItem("authToken");
+
+            // Set submitting state to false and close the modal
             setSubmitting(false);
             setOpenCustomerModal(false);
           } catch (error) {
-            console.log("error", error);
-            toast.error(error.data.message);
+            console.error("Error during customer creation:", error);
+            toast.error(error.data?.message || "An error occurred.");
           }
         })
-        .catch(console.error);
+        .catch(console.error); // Log any geocoding error
     }
   };
+
   const handleSubmitEdit = async (values, { setSubmitting }) => {
     setDefaults({
       key: "AIzaSyCXKqio1YfC7ZI8C-vkQdsfiIg4FoNOwMc",
@@ -632,6 +668,8 @@ const Customer = ({ collapsed }) => {
     setEditCountry(row?.location?.country ? row.location.country : "");
   };
 
+  console.log('customers', customers)
+
   return (
     <Stack
       sx={{
@@ -753,7 +791,7 @@ const Customer = ({ collapsed }) => {
                           checked={
                             selectedProfiles.length !== 0 &&
                             selectedProfiles.length ===
-                              customers?.result?.length
+                            customers?.result?.length
                           }
                           onChange={(e) => {
                             setSelectedProfiles((prev) => {
@@ -951,7 +989,8 @@ const Customer = ({ collapsed }) => {
                         >
                           {row.location?.country || "N/A"}
                         </TableCell>
-                        <TableCell>
+
+                        {/* <TableCell>
                           <div
                             className="badge"
                             style={{
@@ -960,8 +999,8 @@ const Customer = ({ collapsed }) => {
                                 (row.planName === "Advance"
                                   ? "rgb(67 191 229)"
                                   : row.planName === "Pro plan"
-                                  ? "rgb(247 184 75)"
-                                  : "rgb(67 191 229 / 25%)"),
+                                    ? "rgb(247 184 75)"
+                                    : "rgb(67 191 229 / 25%)"),
                               color:
                                 row.planName !== null &&
                                 (row.planName !== "Free"
@@ -974,7 +1013,36 @@ const Customer = ({ collapsed }) => {
                           >
                             {row.planName !== null ? row.planName : "N/A"}
                           </div>
+                        </TableCell> */}
+
+                        <TableCell>
+                          <div
+                            className="badge"
+                            style={{
+                              backgroundColor:
+                                row.planName !== null &&
+                                (row.planName === "Advance"
+                                  ? "rgb(67 191 229)" // Blue for "Advance"
+                                  : row.planName === "Enterprise"
+                                    ? "rgb(34, 193, 195)" // Aqua for "Enterprise"
+                                    : row.planName === "Basic"
+                                      ? "rgb(247 184 75)" // Yellow for "Basic"
+                                      : "rgb(67 191 229 / 25%)"), // Light blue for "Free"
+                              color:
+                                row.planName !== null &&
+                                (row.planName === "Free" // For "Free", text color is blue
+                                  ? "rgb(67 191 229)"
+                                  : "#fff"), // For others, text color is white
+                              padding: "5px 5px",
+                              borderRadius: "5px",
+                              fontSize: "12px",
+                            }}
+                          >
+                            {row.planName !== null ? row.planName : "N/A"}
+                          </div>
                         </TableCell>
+
+
                         <TableCell>
                           <div
                             className="progress my-2 progress-sm"
@@ -989,7 +1057,7 @@ const Customer = ({ collapsed }) => {
                                 width:
                                   (row?.plan?.creditsUsed /
                                     row?.plan?.credits) *
-                                    100 +
+                                  100 +
                                   "%",
                                 backgroundColor: "#1abc9c",
                                 height: "5px",
@@ -1020,8 +1088,8 @@ const Customer = ({ collapsed }) => {
                                   row.paymentStatus === "active"
                                     ? "rgb(67 191 229)"
                                     : row.paymentStatus === null
-                                    ? "rgb(247 184 75)"
-                                    : "rgb(247 184 75)",
+                                      ? "rgb(247 184 75)"
+                                      : "rgb(247 184 75)",
                                 color:
                                   row.paymentStatus === "active"
                                     ? "#fff"
@@ -1084,10 +1152,8 @@ const Customer = ({ collapsed }) => {
                                     .unwrap()
                                     .then((res) => {
                                       toast.success(
-                                        `SMTP for ${row.firstName} ${
-                                          row.lastName
-                                        } ${
-                                          checked ? "enabled" : "disabled"
+                                        `SMTP for ${row.firstName} ${row.lastName
+                                        } ${checked ? "enabled" : "disabled"
                                         } successfully`
                                       );
                                     })
@@ -1113,10 +1179,10 @@ const Customer = ({ collapsed }) => {
                           {row.created_at !== null &&
                             (row.created_at
                               ? new Date(row.created_at).toDateString({
-                                  year: "numeric",
-                                  month: "short",
-                                  day: "numeric",
-                                })
+                                year: "numeric",
+                                month: "short",
+                                day: "numeric",
+                              })
                               : "N/A")}{" "}
                           <small className="text-muted">
                             {row.created_at !== null &&
@@ -1138,8 +1204,8 @@ const Customer = ({ collapsed }) => {
                             {row.purchaseDate !== null &&
                               (row.purchaseDate
                                 ? new Date(
-                                    row.purchaseDate
-                                  ).toLocaleTimeString()
+                                  row.purchaseDate
+                                ).toLocaleTimeString()
                                 : "N/A")}
                           </small>
                         </TableCell>
@@ -1156,8 +1222,8 @@ const Customer = ({ collapsed }) => {
                             {row.expirationDate !== null &&
                               (row.expirationDate
                                 ? new Date(
-                                    row.expirationDate
-                                  ).toLocaleTimeString()
+                                  row.expirationDate
+                                ).toLocaleTimeString()
                                 : "N/A")}
                           </small>
                         </TableCell>{" "}
@@ -1320,9 +1386,8 @@ const Customer = ({ collapsed }) => {
                 {getVisiblePages().map((page) => (
                   <li
                     key={page}
-                    className={`page-item ${
-                      page === (currentPage || pages) ? "active" : ""
-                    }`}
+                    className={`page-item ${page === (currentPage || pages) ? "active" : ""
+                      }`}
                     onClick={() => handlePageClick(page)}
                     style={{ cursor: "pointer" }}
                   >
@@ -1398,12 +1463,16 @@ const Customer = ({ collapsed }) => {
                       email: "",
                       phone: "",
                       location: location.countryName,
+                      plan: "",
+                      packagePeriod: "",
+                      startDate: "",
+                      endDate: ""
                     }}
                     validationSchema={validationSchema}
                     onSubmit={handleSubmit}
                     enableReinitialize={true}
                   >
-                    {({ isSubmitting }) => (
+                    {({ isSubmitting, values }) => (
                       <Form>
                         <div className="mb-2">
                           <label htmlFor="firstName" className="form-label">
@@ -1435,7 +1504,6 @@ const Customer = ({ collapsed }) => {
                             component={CustomErrorMessage}
                           />
                         </div>
-
                         <div className="mb-2">
                           <label htmlFor="email" className="form-label">
                             Email address
@@ -1481,6 +1549,83 @@ const Customer = ({ collapsed }) => {
                             component={CustomErrorMessage}
                           />
                         </div>
+
+                        <div className="mb-3">
+                          <label htmlFor="plan" className="form-label">
+                            Package Plan
+                          </label>
+                          <Field as="select" name="plan" className="form-control">
+                            {/* Dynamically populate the options based on backend data */}
+                            <option value="">Select Plan</option>
+                            {getPackages?.result?.map((plan) => (
+                              <option key={plan._id} value={plan.name}>
+                                {plan.name}
+                              </option>
+                            ))}
+                          </Field>
+                          <ErrorMessage
+                            name="plan"
+                            component={CustomErrorMessage}
+                          />
+                        </div>
+
+                        <div className="mb-3">
+                          <label htmlFor="packagePeriod" className="form-label">
+                            Package Period
+                          </label>
+                          <Field
+                            as="select"
+                            name="packagePeriod"
+                            className="form-control"
+                          >
+                            <option value="">Select Period</option>
+                            <option value="Month">Month</option>
+                            <option value="Year">Year</option>
+                            <option value="Custom Date">Custom Date</option>
+                          </Field>
+                          <ErrorMessage
+                            name="packagePeriod"
+                            component={CustomErrorMessage}
+                          />
+                        </div>
+
+                        {values.packagePeriod === "Custom Date" && (
+                          <>
+                            <div className="mb-3">
+                              <label htmlFor="startDate" className="form-label">
+                                Start Date
+                              </label>
+                              <Field
+                                type="date"
+                                name="startDate"
+                                className="form-control"
+                              />
+                              <ErrorMessage
+                                name="startDate"
+                                component={CustomErrorMessage}
+                              />
+                            </div>
+
+                            <div className="mb-3">
+                              <label htmlFor="endDate" className="form-label">
+                                End Date
+                              </label>
+                              <Field
+                                type="date"
+                                name="endDate"
+                                className="form-control"
+                              />
+                              <ErrorMessage
+                                name="endDate"
+                                component={CustomErrorMessage}
+                              />
+                            </div>
+                          </>
+                        )}
+
+                             
+
+
                         <div
                           className="text-end"
                           style={{
@@ -1500,9 +1645,7 @@ const Customer = ({ collapsed }) => {
                                 role="status"
                                 aria-hidden="true"
                                 style={{
-                                  display: isCreatingCustomer
-                                    ? "inline-block"
-                                    : "none",
+                                  display: isCreatingCustomer ? "inline-block" : "none",
                                 }}
                               ></span>
                             ) : (
@@ -1521,6 +1664,7 @@ const Customer = ({ collapsed }) => {
                           </button>
                         </div>
                       </Form>
+
                     )}
                   </Formik>{" "}
                 </div>
@@ -1968,9 +2112,9 @@ const Customer = ({ collapsed }) => {
                     <img
                       src={
                         avatar &&
-                        avatar !== "" &&
-                        avatar !== "undefined" &&
-                        !avatar.includes("data:image")
+                          avatar !== "" &&
+                          avatar !== "undefined" &&
+                          !avatar.includes("data:image")
                           ? avatar
                           : "/assets/images/users/userPlaceholder.png"
                       }
@@ -2844,8 +2988,7 @@ const Customer = ({ collapsed }) => {
                                           .unwrap()
                                           .then((res) => {
                                             toast.success(
-                                              `SMTP for ${firstName} ${lastName} ${
-                                                checked ? "enabled" : "disabled"
+                                              `SMTP for ${firstName} ${lastName} ${checked ? "enabled" : "disabled"
                                               } successfully`
                                             );
                                           })
@@ -2897,8 +3040,8 @@ const Customer = ({ collapsed }) => {
                                     >
                                       {planStartDate
                                         ? new Date(
-                                            planStartDate
-                                          ).toLocaleDateString()
+                                          planStartDate
+                                        ).toLocaleDateString()
                                         : "N/A"}
                                     </h6>
                                   </div>
@@ -2938,8 +3081,8 @@ const Customer = ({ collapsed }) => {
                                     >
                                       {expirationDate
                                         ? new Date(
-                                            expirationDate
-                                          ).toLocaleDateString()
+                                          expirationDate
+                                        ).toLocaleDateString()
                                         : "N/A"}
                                     </h6>
                                   </div>
@@ -2979,8 +3122,8 @@ const Customer = ({ collapsed }) => {
                                     >
                                       {updateDate
                                         ? new Date(
-                                            updateDate
-                                          ).toLocaleDateString()
+                                          updateDate
+                                        ).toLocaleDateString()
                                         : "N/A"}
                                     </h6>
                                   </div>
@@ -3048,17 +3191,15 @@ const Customer = ({ collapsed }) => {
               <div className="col-md-6">
                 <div className="text-md-end footer-links d-none d-sm-block">
                   <a
-                    href={`${
-                      import.meta.env.VITE_JARVIS_MARKETING_HELP
-                    }/about-us`}
+                    href={`${import.meta.env.VITE_JARVIS_MARKETING_HELP
+                      }/about-us`}
                     target="_blank"
                   >
                     About Us
                   </a>
                   <a
-                    href={`${
-                      import.meta.env.VITE_JARVIS_MARKETING_HELP
-                    }/help-center`}
+                    href={`${import.meta.env.VITE_JARVIS_MARKETING_HELP
+                      }/help-center`}
                     target="_blank"
                   >
                     Help

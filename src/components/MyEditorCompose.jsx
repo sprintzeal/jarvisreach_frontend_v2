@@ -7,7 +7,7 @@ import { useMediaQuery } from "@mui/system";
 const MyEditorCompose = ({ field, form, handleContentChange }) => {
   const [content, setContent] = useState(field?.value ? field?.value : ""); // Initialize with form value if available
 
-  const modules = {
+ const modules = {
     toolbar: [
       [{ font: [] }, { size: [] }],
       ["bold", "italic", "underline", "strike"],
@@ -21,9 +21,13 @@ const MyEditorCompose = ({ field, form, handleContentChange }) => {
         { indent: "+1" },
       ],
       ["direction", { align: [] }],
-      ["link"],
+      ["link", "image", "video"],
       ["clean"],
     ],
+    // Add the imageResize module
+    imageResize: {
+      modules: ["Resize", "DisplaySize", "Toolbar"], // Options for resizing
+    },
   };
 
   const isSmallScreen = useMediaQuery((theme) => theme.breakpoints.down("sm"));
