@@ -1005,7 +1005,7 @@ const SideNav = ({ collapsed, toggleCollapse, setFolderId }) => {
                       <button
                         onClick={() => handleNavClick("/smtp")}
                         style={{
-                          marginTop: collapsed ? "5px" : "5px",
+                          marginTop: collapsed ? "5px" : "15px",
                           color: activeItem === "/smtp" ? "#f1556c" : "",
                         }}
                       >
