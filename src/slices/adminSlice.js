@@ -252,6 +252,23 @@ export const customerApiSlice = apiSlice.injectEndpoints({
       }),
       invalidatesTags: ["Blog"],
     }),
+    deleteByFiles: builder.mutation({
+      query: ({ filenames }) => ({
+        url: `/profiles/deleteByFilename`,
+        method: "DELETE",
+        body: { filenames },
+      }),
+      invalidatesTags: ["GetProfile"], 
+    }),
+    getAllAddedSummaries: builder.query({
+      query: ({ page, limit, search }) => {
+        return {
+          url: `/profiles/getAllAddedSummaries${page ? `?page=${page}` : ""}${limit ? `&limit=${limit}` : ""}${search ? `&search=${search}` : ""}`,
+          method: "GET",
+        };
+      },
+      providesTags: ["AddedSummaries"],
+    }),
     getBlogList: builder.query({
       query: ({ page, limit }) => ({
         url: `/blog/blogs${page ? `?page=${page}` : ""}${
@@ -488,6 +505,7 @@ export const {
   useDeleteAllPlanPackagesMutation,
   useGeoLocationQuery,
   useVerifyEmailQuery,
+  useDeleteByFilesMutation ,
   useLazyVerifyEmailQuery,
   useForgetPasswordMutation,
   useVerifyEmailForgetMutation,
@@ -495,4 +513,5 @@ export const {
   useInviteAndResendCustomerMutation,
   useAddCustomersMutation,
   useDeleteImportMutation,
+  useGetAllAddedSummariesQuery
 } = customerApiSlice;

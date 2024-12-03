@@ -106,6 +106,8 @@ import SortColumns from "../../components/SortColumns";
 import {
   useDeleteImportMutation,
   useGetAdminProfileQuery,
+  useDeleteByFilesMutation,
+  useGetAllAddedSummariesQuery
 } from "../../slices/adminSlice";
 import {
   useAddNoteAndTagMutation,
@@ -197,8 +199,10 @@ const DataManager = ({ collapsed, folderId }) => {
   const [anchorElLeadStatus, setAnchorElLeadStatus] = useState(null);
   const [openLeadStatus, setOpenLeadStatus] = useState(false);
   const [leadStatus, setLeadStatus] = useState("");
+  const [searchQuery, setSearchQuery] = useState(""); 
   const [deleteImport, { isLoading: deleteImportLoading }] =
     useDeleteImportMutation();
+    const [deleteByFiles] = useDeleteByFilesMutation();
   const handleEditFolderName = () => {
     setOpenEditPopOver(true);
   };
@@ -253,6 +257,7 @@ const DataManager = ({ collapsed, folderId }) => {
   const [createSequence] = useCreateSequenceMutation();
   const [openImportDrawer, setOpenImportDrawer] = useState(false);
   const [openImportDeleted, setOpenImportDeleted] = useState(false);
+  const [selectedFiles, setSelectedFiles] = useState([]); 
   const [profileTagAndU] = useProfileTagsAndUntagsMutation();
   const [profilemultipleTag] = useProfileMultipleStatusMutation();
   const [selectedLeadStatusId, setSelectedLeadStatusId] = useState("");
@@ -261,7 +266,43 @@ const DataManager = ({ collapsed, folderId }) => {
     setConfirmOpenLeadNote(false);
   };
   const [deleteLead] = useDeleteLeadMutation();
+  const handleFileSelection = (event) => {
+    const { value, checked } = event.target; 
+    setSelectedFiles((prevSelectedFiles) => {
+      if (checked) {
+        return [...prevSelectedFiles, { filename: value }];
+      } else {
+        return prevSelectedFiles.filter((file) => file.filename !== value);
+      }
+    });
+  };
+  const handleCombinedClick = () => {
+    handleDropdownToggle("createdBy");
+  };
+  
+  const handleDeleteFiles = async () => {
+    if (!selectedFiles || selectedFiles.length === 0) {
+      toast.error("Please select files to delete.");
+      return;
+    }
+    console.log("Selected files:", selectedFiles);
+    const filenames = selectedFiles.map(file => file.filename); 
+  
+    try {
+      const res = await deleteByFiles({ filenames }).unwrap();
+      toast.success(res?.message || "Files deleted successfully");
+      setSelectedFiles([]);
+    } catch (error) {
+       toast.error(error?.message || "Error deleting files");
+    }
+  };
+  const handleSearchChange = (event) => {
+    setSearchQuery(event.target.value);
+  };
+  
+  
   const handleConfirmDelete = async () => {
+    
     try {
       const body = {
         folderId: folderIds,
@@ -272,7 +313,6 @@ const DataManager = ({ collapsed, folderId }) => {
       }).unwrap();
 
       setConfirmOpenLead(false);
-      // toast.success("Lead deleted successfully");
       toast.success(res.message);
       setSelectedProfiles([]);
     } catch (error) {
@@ -378,6 +418,7 @@ const DataManager = ({ collapsed, folderId }) => {
       toast.error(error.data.message);
     }
   };
+ 
   const radioOptions = [
     { name: "Added", value: "added", color: "" },
     { name: "Contacted", value: "contacted", color: "form-check-success" },
@@ -409,10 +450,9 @@ const DataManager = ({ collapsed, folderId }) => {
       toast.error(error.data.message);
     }
   };
-
   const [fieldValuePairs, setFieldValuePairs] = useState([]);
   const [inputValue, setInputValue] = useState("");
-
+ 
   const handleKeyDown = (event) => {
     if (event.key === "Enter" && inputValue) {
       event.preventDefault();
@@ -495,7 +535,6 @@ const DataManager = ({ collapsed, folderId }) => {
     customColumns: [],
     fieldsTemplate: "allFields",
   });
-
   const validationSchema = Yup.object().shape({
     fileFormat: Yup.string().required("File format is required"),
     includeResultsWithOutEmails: Yup.boolean(),
@@ -706,7 +745,18 @@ const DataManager = ({ collapsed, folderId }) => {
       toast.error(error.data.message);
     }
   };
-
+  const {
+    data: addedSummariesData,
+    isFetching: isFetchingAddedSummaries,
+    isLoading: isLoadingAddedSummaries,
+    error: addedSummariesError,
+  } = useGetAllAddedSummariesQuery({
+    page: pages,
+    limit: limit,
+    search: search,
+  });
+ const addedsu = addedSummariesData
+ 
   const handleCheckboxChange = (profileId, tag) => (event) => {
     const checked = event.target.checked;
     setTagChecked((prev) => ({
@@ -754,7 +804,6 @@ const DataManager = ({ collapsed, folderId }) => {
 
     return updatedProfiles;
   };
-
   const itemsPerPageOptions = [5, 10, 20, 50];
   const totalItems = getProfiles?.result?.totalRecord || 0;
   const [currentPage, setCurrentPage] = useState(
@@ -1582,9 +1631,20 @@ const DataManager = ({ collapsed, folderId }) => {
     const file = e.target.files[0];
     if (file) {
       setImportValue(file);
+      readExcelData(file);
     }
   };
 
+  const readExcelData = (file) => {
+    const reader = new FileReader();
+    
+    reader.onload = (event) => {
+      const fileContent = event.target.result;
+     
+    };
+
+    reader.readAsArrayBuffer(file); // Read the file as an array buffer
+  };
   const handleImportSubmit = async (e) => {
     e.preventDefault();
     if (!importValue) {
@@ -1644,6 +1704,19 @@ const DataManager = ({ collapsed, folderId }) => {
   //     };
   //   }
   // };
+  const filteredFiles = addedSummariesData && addedSummariesData.addedData
+  ? addedSummariesData.addedData.filter((item) =>
+      item.filename.toLowerCase().includes(searchQuery.toLowerCase())
+    )
+  : []; 
+const uniqueFiles = filteredFiles.length > 0 
+  ? [...new Set(filteredFiles.map(item => item.filename))]
+  : []; 
+
+const totalFileData = addedSummariesData && addedSummariesData.totalFileData 
+  ? addedSummariesData.totalFileData
+  : 0;
+
 
   return (
     <div>
@@ -2671,6 +2744,7 @@ const DataManager = ({ collapsed, folderId }) => {
                                             />
                                             Lead Status
                                           </button>
+                                         
                                           <Popover
                                             open={activeDropdownLeadStatus}
                                             anchorEl={anchorElLeadStatus}
@@ -2713,6 +2787,8 @@ const DataManager = ({ collapsed, folderId }) => {
                                                       />
                                                       Lead Status
                                                     </h5>
+
+                                                    
                                                   </div>
                                                   <div className="leading-states-right">
                                                     {/* <a >
@@ -2966,7 +3042,7 @@ const DataManager = ({ collapsed, folderId }) => {
                                               </form>
                                             </div>
                                           </div>
-                                          <div className="col-sm-7">
+                                          <div className="col-sm-6">
                                             <div
                                               className="btn-group mb-2"
                                               style={{ paddingRight: "5px" }}
@@ -3772,113 +3848,11 @@ const DataManager = ({ collapsed, folderId }) => {
                                               </div>
                                             </LocalizationProvider>
                                             {/* /btn-group */}
-                                            {/* <div
+                                             <div
                                               className="btn-group mb-2"
                                               style={{ paddingRight: "5px" }}
                                             >
-                                              <Button
-                                                type="button"
-                                                className={`btn btn-light dropdown-toggle ${
-                                                  activeDropdown === "createdBy"
-                                                    ? "show"
-                                                    : ""
-                                                }`}
-                                                data-bs-toggle="dropdown"
-                                                aria-haspopup="true"
-                                                aria-expanded={
-                                                  activeDropdown === "createdBy"
-                                                }
-                                                onClick={() =>
-                                                  handleDropdownToggle(
-                                                    "createdBy"
-                                                  )
-                                                }
-                                                style={{
-                                                  color: "#343a40",
-                                                  fontSize: "14px",
-                                                  fontWeight: 500,
-                                                  fontFamily:
-                                                    "Nunito, Sans-serif",
-                                                  // not in uppercase
-                                                  textTransform: "none",
-                                                  backgroundColor: "#f3f7f9",
-                                                }}
-                                              >
-                                                Created by{" "}
-                                                <i className="mdi mdi-chevron-down"></i>
-                                              </Button>
-                                              <div
-                                                className={`dropdown-menu ${
-                                                  activeDropdown === "createdBy"
-                                                    ? "show"
-                                                    : ""
-                                                }`}
-                                                style={{
-                                                  width: "250px",
-                                                  backgroundColor: "#fff",
-                                                }}
-                                              >
-                                                <a className="dropdown-item">
-                                                  <form className="mb-2 mb-sm-0">
-                                                    <label
-                                                      htmlFor="inputPassword2"
-                                                      className="visually-hidden"
-                                                    >
-                                                      Search
-                                                    </label>
-                                                    <input
-                                                      type="search"
-                                                      className="form-control"
-                                                      id="inputPassword2"
-                                                      placeholder="Enter teammate name..."
-                                                    />
-                                                  </form>
-                                                </a>
-                                                <a className="dropdown-item">
-                                                  <div className="form-check mb-2 form-check-success">
-                                                    <input
-                                                      className="form-check-input"
-                                                      type="checkbox"
-                                                      value=""
-                                                      id="customckeck2"
-                                                    />
-                                                    <img
-                                                      src="assets/images/users/user-4.jpg"
-                                                      alt="table-user"
-                                                      className="me-2 rounded-circle rounded-circle-img"
-                                                    />
-                                                    <label
-                                                      className="form-check-label"
-                                                      htmlFor="customckeck1"
-                                                    >
-                                                      Hamid Ali
-                                                    </label>
-                                                  </div>
-                                                </a>
-                                                <div className="dropdown-divider"></div>
-                                                <a className="dropdown-item">
-                                                  <div className="form-check mb-2 form-check-success">
-                                                    <input
-                                                      className="form-check-input"
-                                                      type="checkbox"
-                                                      value=""
-                                                      id="customckeck2"
-                                                    />
-                                                    <img
-                                                      src="assets/images/users/user-4.jpg"
-                                                      alt="table-user"
-                                                      className="me-2 rounded-circle rounded-circle-img"
-                                                    />
-                                                    <label
-                                                      className="form-check-label"
-                                                      htmlFor="customckeck1"
-                                                    >
-                                                      Murugan
-                                                    </label>
-                                                  </div>
-                                                </a>
-                                              </div>
-                                            </div> */}
+                                            </div> 
                                             <div
                                               className="btn-group mb-2"
                                               style={{ paddingRight: "5px" }}
@@ -4259,7 +4233,7 @@ const DataManager = ({ collapsed, folderId }) => {
                                             {/* /btn-group */}
                                           </div>
 
-                                          <div className="col-sm-3">
+                                          <div className="col-sm-4">
                                             <div className="text-sm-end mt-2 mt-sm-0">
                                               <div
                                                 className="btn-group mb-2"
@@ -4575,33 +4549,121 @@ const DataManager = ({ collapsed, folderId }) => {
                                                   <i className="fa-solid fa-download"></i>{" "}
                                                   Import
                                                 </button>
-                                              </div>
-                                              <button
-                                                type="button"
-                                                className="btn btn-info"
-                                                data-bs-toggle="modal"
-                                                data-bs-target="#exportContact"
-                                                onClick={() => {
-                                                  setOpenImportDeleted(true);
-                                                }}
-                                                style={{
-                                                  backgroundColor: "#ff000d",
-                                                  border: "none",
-                                                  // display: "flex",
-                                                  // alignItems: "center",
-                                                  // justifyContent: "flex-end",
-                                                }}
-                                              >
-                                                <FaTrash
-                                                  style={{
-                                                    color: "#fff",
-                                                    marginTop: "-2px",
-                                                  }}
-                                                />{" "}
-                                                Delete Imported Leads
-                                              </button>
+                                                </div>
+                                               <div className="btn-group mb-2 gap-1">
+                                                 <div
+                                                   className="btn-group mb-2"
+                                                   style={{ paddingRight: "5px" }}
+                                                 >
+                                                   <button
+                                                     type="button"
+                                                     className={`btn btn-light dropdown-toggle ${
+                                                       activeDropdown === "createdBy" ? "show" : ""
+                                                     }`}
+                                                     data-bs-toggle="dropdown"
+                                                     aria-haspopup="true"
+                                                     aria-expanded={activeDropdown === "createdBy"}
+                                                     onClick={handleCombinedClick}
+                                                   >
+                                                     Delete By Files <i className="mdi mdi-chevron-down"></i>
+                                                   </button>
+                                                   <div
+                                                     className={`dropdown-menu ${
+                                                       activeDropdown === "createdBy" ? "show" : ""
+                                                     }`}
+                                                     style={{ width: "250px" }}
+                                                   >
+                                                     {/* Search Input */}
+                                                     <a className="dropdown-item">
+                                                       <form className="mb-2 mb-sm-0">
+                                                         <label htmlFor="inputPassword2" className="visually-hidden">
+                                                           Search
+                                                         </label>
+                                                         <input
+                                                           type="search"
+                                                           className="form-control"
+                                                           id="inputPassword2"
+                                                           placeholder="Delete by File name"
+                                                           value={searchQuery}
+                                                           onChange={handleSearchChange} 
+                                                         />
+                                                       </form>
+                                                     </a>
+                                                     <a className="dropdown-item">
+                                                       <div className="form-check mb-2 form-check-success">
+                                                         <label className="form-check-label" htmlFor="hamidAli">
+                                                         {filteredFiles.map((item, index) => (
+                                                              <div key={index}>
+                                                                <input
+                                                                  className="form-check-input"
+                                                                  type="checkbox"
+                                                                  value={item.filename} 
+                                                                  id={`file-${index}`}
+                                                                  onChange={handleFileSelection}
+                                                                />
+                                                                <label className="form-check-label" htmlFor={`file-${index}`}>
+                                                                  {item.filename} - {item.totalFileData} 
+                                                               </label>
+                                                              </div>
+                                                            ))}
+                                                          </label>
+
+                                                       </div>
+                                                     </a>
+                                               
+                                                     <button
+                                                       type="button"
+                                                       className="btn btn-info"
+                                                       data-bs-toggle="modal"
+                                                       data-bs-target="#exportContact"
+                                                       style={{
+                                                         backgroundColor: "#ff000d",
+                                                         border: "none",
+                                                         display: "flex",
+                                                         alignItems: "center",
+                                                         justifyContent: "flex-end",
+                                                       }}
+                                                       onClick={handleDeleteFiles}
+                                                     >
+                                                       <FaTrash
+                                                         style={{
+                                                           color: "#fff",
+                                                           marginTop: "-2px",
+                                                         }}
+                                                       />
+                                                       Delete
+                                                     </button>
+                                                   </div>
+                                                 </div>
+                                               
+                                                 {/* Delete Imported Leads Button */}
+                                                 <button
+                                                   type="button"
+                                                   className="btn btn-info"
+                                                   data-bs-toggle="modal"
+                                                   data-bs-target="#exportContact"
+                                                   onClick={() => {
+                                                     setOpenImportDeleted(true);
+                                                   }}
+                                                   style={{
+                                                     backgroundColor: "#ff000d",
+                                                     border: "none",
+                                                     display: "flex",
+                                                     alignItems: "center",
+                                                     justifyContent: "flex-end",
+                                                   }}
+                                                 >
+                                                   <FaTrash
+                                                     style={{
+                                                       color: "#fff",
+                                                       marginTop: "-2px",
+                                                     }}
+                                                   />
+                                                   Delete Import Leads
+                                                 </button>
+                                               </div>
+                                               </div>
                                               {/* /btn-group */}
-                                            </div>
                                           </div>
                                           {/* <!-- end col--> */}
                                         </div>
@@ -6105,65 +6167,6 @@ const DataManager = ({ collapsed, folderId }) => {
                                                           </label>
                                                         </div>
                                                       </TableCell>
-                                                      {columnData?.map(
-                                                        (column) => {
-                                                          if (
-                                                            column?.name ===
-                                                              "profile" &&
-                                                            column?.display ===
-                                                              true
-                                                          )
-                                                            return (
-                                                              <TableCell
-                                                                className="table-user"
-                                                                onClick={() => {
-                                                                  handleEdit(
-                                                                    profile
-                                                                  );
-                                                                }}
-                                                                style={{
-                                                                  color:
-                                                                    "rgb(108 117 125)",
-                                                                  fontWeight: 600,
-                                                                  fontFamily:
-                                                                    "Nunito, sans-serif",
-                                                                  cursor:
-                                                                    "pointer",
-                                                                }}
-                                                              >
-                                                                <img
-                                                                  src={
-                                                                    profile?.imageUrl &&
-                                                                    profile?.imageUrl !==
-                                                                      "" &&
-                                                                    profile?.imageUrl !==
-                                                                      null &&
-                                                                    profile?.imageUrl !==
-                                                                      undefined &&
-                                                                    !profile?.imageUrl.includes(
-                                                                      "data:image"
-                                                                    ) &&
-                                                                    profile?.imageUrl !==
-                                                                      "https://www.undefined"
-                                                                      ? profile?.imageUrl
-                                                                      : "/assets/images/users/userPlaceholder.png"
-                                                                  }
-                                                                  alt="table-user"
-                                                                  className="me-2 rounded-circle"
-                                                                />
-                                                                <a
-                                                                  className="text-body fw-semibold"
-                                                                  data-bs-toggle="offcanvas"
-                                                                  data-bs-target="#offcanvasRight"
-                                                                >
-                                                                  {
-                                                                    profile?.name
-                                                                  }
-                                                                </a>
-                                                              </TableCell>
-                                                            );
-                                                        }
-                                                      )}
                                                       {columnData?.map(
                                                         (column) => {
                                                           if (
@@ -10404,7 +10407,7 @@ const DataManager = ({ collapsed, folderId }) => {
                                           </div>
                                         </div>
                                         {/* /btn-group */}
-                                        <div
+                                        {/* <div
                                           className="btn-group mb-2"
                                           style={{ paddingRight: "5px" }}
                                         >
@@ -10459,11 +10462,6 @@ const DataManager = ({ collapsed, folderId }) => {
                                                   value=""
                                                   id="customckeck2"
                                                 />
-                                                <img
-                                                  src="assets/images/users/user-4.jpg"
-                                                  alt="table-user"
-                                                  className="me-2 rounded-circle rounded-circle-img"
-                                                />
                                                 <label
                                                   className="form-check-label"
                                                   htmlFor="customckeck1"
@@ -10495,7 +10493,7 @@ const DataManager = ({ collapsed, folderId }) => {
                                               </div>
                                             </a>
                                           </div>
-                                        </div>
+                                        </div> */}
                                         {/* /btn-group */}
                                         <div
                                           className="btn-group mb-2"
