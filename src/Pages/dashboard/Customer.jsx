@@ -103,6 +103,10 @@ const Customer = ({ collapsed }) => {
   const [editPhone, setEditPhone] = useState("");
   const [editCustomerId, setEditCustomerId] = useState("");
   const [editCountry, setEditCountry] = useState("");
+  const [editPlan, setEditPlan] = useState("");
+  const [editPackagePeriod, setEditPackagePeriod] = useState("");
+  const [editStartDate, setEditStartDate] = useState("");
+  const [editEndDate, setEditEndDate] = useState("");
   const [openInviteCustomer, setOpenInviteCustomer] = useState(false);
   const [openResendCustomer, setOpenResendCustomer] = useState(false);
   const [inviteEmail, setInviteEmail] = useState("");
@@ -494,9 +498,7 @@ const Customer = ({ collapsed }) => {
               // packagePeriod: values.packagePeriod,
             };
 
-            console.log('Data to send to backend:', data); // Log the data to be sent to the backend
-
-            // Send the data to the backend
+            console.log('Data to send to backend:', data); 
             await createCustomer({ body: data }).unwrap();
 
             // If the request is successful, show a success toast
@@ -520,6 +522,11 @@ const Customer = ({ collapsed }) => {
   };
 
   const handleSubmitEdit = async (values, { setSubmitting }) => {
+    if (values.packagePeriod !== "Custom Date") {
+      delete values.startDate;
+      delete values.endDate;
+    }
+    
     setDefaults({
       key: "AIzaSyCXKqio1YfC7ZI8C-vkQdsfiIg4FoNOwMc",
       language: "en",
@@ -538,6 +545,7 @@ const Customer = ({ collapsed }) => {
                 lon: lng,
               },
             };
+            console.log('Data', data)
             await updateCustomer({
               id: editCustomerId,
               updatedCustomer: data,
@@ -638,7 +646,7 @@ const Customer = ({ collapsed }) => {
     setExpirationDate(
       row?.expirationDate ? row.expirationDate : new Date().toISOString()
     );
-    setPlanName(row?.planName ? row.planName : "");
+    setPlanName(row?.plan?.planName ? row.plan?.planName : "");
     setUpdateDate(row?.plan?.planUpdateDate ? row.plan.planUpdateDate : "");
     setCredits(row?.plan?.credits ? row.plan.credits : 0);
     setCreditsUsed(row?.plan?.creditsUsed ? row.plan.creditsUsed : 0);
@@ -666,6 +674,12 @@ const Customer = ({ collapsed }) => {
     setEditPhone(row?.phone ? row.phone : "");
     setEditCustomerId(row?._id ? row._id : "");
     setEditCountry(row?.location?.country ? row.location.country : "");
+    setEditPlan(row?.plan?.planName ? row.plan?.planName : "");
+    setEditPackagePeriod(row?.plan?.packagePeriod ? row.plan?.packagePeriod : "");
+    const formatDate = (dateString) => dateString ? new Date(dateString).toISOString().split('T')[0] : "";
+
+    setEditStartDate(formatDate(row?.plan?.startDate));
+    setEditEndDate(formatDate(row?.plan?.endDate));
   };
 
   console.log('customers', customers)
@@ -1020,17 +1034,17 @@ const Customer = ({ collapsed }) => {
                             className="badge"
                             style={{
                               backgroundColor:
-                                row.planName !== null &&
-                                (row.planName === "Advance"
+                                row.plan && row.plan.planName !== null &&
+                                (row.plan.planName === "Advance"
                                   ? "rgb(67 191 229)" // Blue for "Advance"
-                                  : row.planName === "Enterprise"
+                                  : row.plan.planName === "Enterprise"
                                     ? "rgb(34, 193, 195)" // Aqua for "Enterprise"
-                                    : row.planName === "Basic"
+                                    : row.plan.planName === "Basic"
                                       ? "rgb(247 184 75)" // Yellow for "Basic"
                                       : "rgb(67 191 229 / 25%)"), // Light blue for "Free"
                               color:
-                                row.planName !== null &&
-                                (row.planName === "Free" // For "Free", text color is blue
+                                row.plan && row.plan.planName !== null &&
+                                (row.plan.planName === "Free" // For "Free", text color is blue
                                   ? "rgb(67 191 229)"
                                   : "#fff"), // For others, text color is white
                               padding: "5px 5px",
@@ -1038,9 +1052,10 @@ const Customer = ({ collapsed }) => {
                               fontSize: "12px",
                             }}
                           >
-                            {row.planName !== null ? row.planName : "N/A"}
+                            {row.plan && row.plan.planName !== null ? row.plan.planName : "N/A"}
                           </div>
                         </TableCell>
+
 
 
                         <TableCell>
@@ -1209,7 +1224,7 @@ const Customer = ({ collapsed }) => {
                                 : "N/A")}
                           </small>
                         </TableCell>
-                        <TableCell
+                        {/* <TableCell
                           style={{
                             whiteSpace: "nowrap",
                           }}
@@ -1226,7 +1241,24 @@ const Customer = ({ collapsed }) => {
                                 ).toLocaleTimeString()
                                 : "N/A")}
                           </small>
-                        </TableCell>{" "}
+                        </TableCell>{" "} */}
+
+                        <TableCell style={{ whiteSpace: "nowrap" }}>
+                          {row.expiredAt !== null &&
+                            (row.expiredAt
+                              ? new Date(row.expiredAt).toDateString()
+                              : "N/A")}{" "}
+                          <small className="text-muted">
+                            {row.expiredAt !== null &&
+                              (row.expiredAt
+                                ? new Date(row.expiredAt).toLocaleTimeString()
+                                : "N/A")}
+                          </small>
+                        </TableCell>
+
+
+
+
                         <TableCell
                           style={{
                             whiteSpace: "nowrap",
@@ -1850,23 +1882,28 @@ const Customer = ({ collapsed }) => {
                 ></button>
               </div>
               <div className="modal-body p-4">
-                <Formik
+              <Formik
                   initialValues={{
                     firstName: editFirstName,
                     lastName: editLastName,
                     email: editEmail,
                     phone: editPhone,
                     location: editCountry,
+                    plan: editPlan,
+                    packagePeriod: editPackagePeriod,
+                    startDate: editStartDate || "", // Default empty string if not set
+                    endDate: editEndDate || "", // Default empty string if not set
                   }}
                   validationSchema={validationSchema}
                   onSubmit={handleSubmitEdit}
                   enableReinitialize={true}
                 >
-                  {({ isSubmitting }) => (
+                  {({ isSubmitting, values }) => (
                     <Form>
+                      {/* First Name */}
                       <div className="mb-2">
                         <label htmlFor="firstName" className="form-label">
-                          First name
+                          First Name
                         </label>
                         <Field
                           type="text"
@@ -1879,9 +1916,11 @@ const Customer = ({ collapsed }) => {
                           component={CustomErrorMessage}
                         />
                       </div>
+
+                      {/* Last Name */}
                       <div className="mb-2">
                         <label htmlFor="lastName" className="form-label">
-                          Last name
+                          Last Name
                         </label>
                         <Field
                           type="text"
@@ -1895,6 +1934,7 @@ const Customer = ({ collapsed }) => {
                         />
                       </div>
 
+                      {/* Email */}
                       <div className="mb-2">
                         <label htmlFor="email" className="form-label">
                           Email address
@@ -1910,6 +1950,8 @@ const Customer = ({ collapsed }) => {
                           component={CustomErrorMessage}
                         />
                       </div>
+
+                      {/* Phone */}
                       <div className="mb-2">
                         <label htmlFor="phone" className="form-label">
                           Phone
@@ -1925,6 +1967,8 @@ const Customer = ({ collapsed }) => {
                           component={CustomErrorMessage}
                         />
                       </div>
+
+                      {/* Location */}
                       <div className="mb-3">
                         <label htmlFor="location" className="form-label">
                           Location
@@ -1940,6 +1984,67 @@ const Customer = ({ collapsed }) => {
                           component={CustomErrorMessage}
                         />
                       </div>
+
+                      {/* Package Plan */}
+                      <div className="mb-3">
+                        <label htmlFor="plan" className="form-label">
+                          Package Plan
+                        </label>
+                        <Field as="select" name="plan" className="form-control">
+                          <option value="">Select Plan</option>
+                          {getPackages?.result?.map((plan) => (
+                            <option key={plan._id} value={plan.name}>
+                              {plan.name}
+                            </option>
+                          ))}
+                        </Field>
+                        <ErrorMessage name="plan" component={CustomErrorMessage} />
+                      </div>
+
+                      {/* Package Period */}
+                      <div className="mb-3">
+                        <label htmlFor="packagePeriod" className="form-label">
+                          Package Period
+                        </label>
+                        <Field as="select" name="packagePeriod" className="form-control">
+                          <option value="">Select Period</option>
+                          <option value="Month">Month</option>
+                          <option value="Year">Year</option>
+                          <option value="Custom Date">Custom Date</option>
+                        </Field>
+                        <ErrorMessage name="packagePeriod" component={CustomErrorMessage} />
+                      </div>
+
+                      {/* Conditional Fields for Custom Date */}
+                      {values.packagePeriod === "Custom Date" && (
+                        <>
+                          <div className="mb-3">
+                            <label htmlFor="startDate" className="form-label">
+                              Start Date
+                            </label>
+                            <Field
+                              type="date"
+                              name="startDate"
+                              className="form-control"
+                            />
+                            <ErrorMessage name="startDate" component={CustomErrorMessage} />
+                          </div>
+
+                          <div className="mb-3">
+                            <label htmlFor="endDate" className="form-label">
+                              End Date
+                            </label>
+                            <Field
+                              type="date"
+                              name="endDate"
+                              className="form-control"
+                            />
+                            <ErrorMessage name="endDate" component={CustomErrorMessage} />
+                          </div>
+                        </>
+                      )}
+
+                      {/* Submit and Cancel Buttons */}
                       <div
                         className="text-end"
                         style={{
@@ -1951,9 +2056,9 @@ const Customer = ({ collapsed }) => {
                         <button
                           type="submit"
                           className="btn btn-success waves-effect waves-light"
-                          disabled={isUpdatingCustomer}
+                          disabled={isSubmitting}
                         >
-                          {isUpdatingCustomer ? (
+                          {isSubmitting ? (
                             <span
                               className="spinner-border spinner-border-sm"
                               role="status"
@@ -1974,7 +2079,8 @@ const Customer = ({ collapsed }) => {
                       </div>
                     </Form>
                   )}
-                </Formik>{" "}
+                </Formik>
+
               </div>
             </div>
             {/* <!-- /.modal-content --> */}
