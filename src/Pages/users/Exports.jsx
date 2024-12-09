@@ -118,7 +118,7 @@ const Exports = ({ collapsed }) => {
             </div>
           </div>
           {/* <!-- end page title -->  */}
-          <div className="row">
+          {/* <!-- <div className="row">
             <div className="col-12">
               <div
                 style={{
@@ -135,7 +135,7 @@ const Exports = ({ collapsed }) => {
                 maintenance and will resume in a few days.
               </div>
             </div>
-          </div>
+          </div>-->  */}
           <div className="row">
             <div className="col-12">
               <div className="card">
