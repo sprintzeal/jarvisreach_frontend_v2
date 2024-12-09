@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { FaRotateRight } from "react-icons/fa6";
 import {
   useDownloadExportMutation,
@@ -18,6 +18,7 @@ import { daysAgo } from "../../utils/timeAgo";
 const Exports = ({ collapsed }) => {
   const [limit, setLimit] = useState(5);
   const [pages, setPage] = useState(1);
+  const [sortedExports, setSortedExports] = useState([]); // Local sorted data
   const {
     data: getExport,
     error: getExportError,
@@ -26,7 +27,7 @@ const Exports = ({ collapsed }) => {
     page: pages,
     limit: limit,
   });
-  const [downloadExport] = useDownloadExportMutation();
+
   const isSmallScreen = useMediaQuery("(max-width: 768px)");
   const itemsPerPageOptions = [5, 10, 20, 50];
   const totalItems = getExport?.totalItems || 0;
@@ -83,6 +84,18 @@ const Exports = ({ collapsed }) => {
     return visiblePages;
   };
 
+  // Sorting function that sorts once the data is fetched
+  useEffect(() => {
+    if (getExport?.result) {
+      const sortedData = [...getExport.result].sort((a, b) => {
+        const aDate = new Date(a.createdAt);
+        const bDate = new Date(b.createdAt);
+        return bDate - aDate; // Sorting in descending order (latest date first)
+      });
+      setSortedExports(sortedData); // Update the local sorted data state
+    }
+  }, [getExport?.result]); // Only run when `getExport?.result` changes
+
   return (
     <div className="content-page">
       <div className="content">
@@ -105,7 +118,24 @@ const Exports = ({ collapsed }) => {
             </div>
           </div>
           {/* <!-- end page title -->  */}
-
+          <div className="row">
+            <div className="col-12">
+              <div
+                style={{
+                  fontSize: "20px",
+                  fontWeight: "500",
+                  padding: "50px",
+                  textAlign: "center",
+                  background: "#ff000d1f",
+                  borderRadius: "20px",
+                  border: "1px solid #ccc",
+                }}
+              >
+                Bulk enrichment and data export features are temporarily under
+                maintenance and will resume in a few days.
+              </div>
+            </div>
+          </div>
           <div className="row">
             <div className="col-12">
               <div className="card">
@@ -127,9 +157,7 @@ const Exports = ({ collapsed }) => {
                               <TableRow>
                                 <TableCell>
                                   <span className="refrese">
-                                    <FaRotateRight
-                                      style={{ fontSize: "20px" }}
-                                    />
+                                    <FaRotateRight style={{ fontSize: "20px" }} />
                                   </span>
                                   Started
                                 </TableCell>
@@ -140,79 +168,37 @@ const Exports = ({ collapsed }) => {
                                 <TableCell>Download</TableCell>
                               </TableRow>
                             </TableHead>
-                            {getExport?.result?.length > 0 &&
-                              getExport?.result?.map((lead) => (
-                                <TableBody>
-                                  <TableRow>
-                                    <TableCell>
-                                      {daysAgo(lead?.createdAt)}
-                                    </TableCell>
-                                    <TableCell>
-                                      {lead.leadsCount ? lead.leadsCount : 0}
-                                    </TableCell>
-                                    <TableCell>
-                                      {lead.folderName
-                                        ? lead.folderName
-                                        : "N/A"}
-                                    </TableCell>
-                                    <TableCell></TableCell>
-                                    <TableCell>
-                                      {lead?.status ? lead?.status : "N/A"}
-                                    </TableCell>
+                            <TableBody>
+                              {sortedExports.length > 0 ? (
+                                sortedExports.map((lead) => (
+                                  <TableRow key={lead._id}>
+                                    <TableCell>{daysAgo(lead?.createdAt)}</TableCell>
+                                    <TableCell>{lead.leadsCount || 0}</TableCell>
+                                    <TableCell>{lead.folderName || "N/A"}</TableCell>
+                                    <TableCell>{}</TableCell>
+                                    <TableCell>{lead?.status || "N/A"}</TableCell>
                                     <TableCell>
                                       <button
                                         type="button"
                                         className="btn btn-dark"
-                                        onClick={() =>
-                                          window.open(lead?.resultFile)
-                                        }
+                                        onClick={() => window.open(lead?.resultFile)}
                                       >
                                         Download
                                       </button>
                                     </TableCell>
                                   </TableRow>
-                                </TableBody>
-                              ))}
-                            {getExport?.result?.length === 0 && (
-                              <TableBody>
+                                ))
+                              ) : (
                                 <TableRow>
-                                  <TableCell colSpan={6}>
-                                    <div className="row">
-									    <div className="col-lg-12">
-									       
-									        <div className="card">
-									            <div className="card-body">
-									                <div className="install-extention">
-									                    <img src="https://d2ds8yldqp7gxv.cloudfront.net/install-extent.png" width="200" height="190" />
-									                    <h4>You haven't exported any contact yet!</h4>
-									                    <p>Your exported files will appear here for easy access anytime.</p>
-									                </div> 
-									            </div>
-									        </div>
-									    </div>
-									
-									
-									
-									</div>
-                                  </TableCell>
-                                </TableRow>
-                              </TableBody>
-                            )}
-                            {getExportIsLoading && (
-                              <TableBody>
-                                <TableRow>
-                                  <TableCell
-                                    colSpan={6}
-                                    style={{ textAlign: "center" }}
-                                  >
+                                  <TableCell colSpan={6} style={{ textAlign: "center" }}>
                                     <CircularProgress />
                                   </TableCell>
                                 </TableRow>
-                              </TableBody>
-                            )}
+                              )}
+                            </TableBody>
                           </Table>
                         </div>
-
+                        {/* Pagination */}
                         <nav>
                           <div
                             className="pagination-container"
@@ -220,7 +206,6 @@ const Exports = ({ collapsed }) => {
                               maxWidth: "100%",
                               overflowX: "auto",
                               display: "flex",
-                              // direction column in small screen
                               flexDirection: isSmallScreen ? "column" : "",
                             }}
                           >
@@ -236,7 +221,6 @@ const Exports = ({ collapsed }) => {
                                   value={itemsPerPage}
                                   onChange={handleItemsPerPageChange}
                                   style={{
-                                    // style for select
                                     padding: "5px",
                                     borderRadius: "5px",
                                     border: "1px solid #ccc",
@@ -252,37 +236,10 @@ const Exports = ({ collapsed }) => {
                               </label>
                             </div>
                             <ul className="pagination pagination-rounded mb-0 pt-4">
-                              {/* first page */}
-                              {getVisiblePages()?.length > 3 &&
-                                currentPage > 3 && (
-                                  <li
-                                    className="page-item"
-                                    onClick={() => handlePageClick(1)}
-                                    style={{ cursor: "pointer" }}
-                                  >
-                                    <a className="page-link">1</a>
-                                  </li>
-                                )}
-                              <li
-                                className="page-item"
-                                onClick={handlePrevClick}
-                                style={{ cursor: "pointer" }}
-                              >
-                                <a className="page-link" aria-label="Previous">
-                                  <span aria-hidden="true">«</span>
-                                  <span className="visually-hidden">
-                                    Previous
-                                  </span>
-                                </a>
-                              </li>
                               {getVisiblePages().map((page) => (
                                 <li
                                   key={page}
-                                  className={`page-item ${
-                                    page === (currentPage || pages)
-                                      ? "active"
-                                      : ""
-                                  }`}
+                                  className={`page-item ${page === currentPage ? "active" : ""}`}
                                   onClick={() => handlePageClick(page)}
                                   style={{ cursor: "pointer" }}
                                 >
@@ -292,48 +249,26 @@ const Exports = ({ collapsed }) => {
                               <li
                                 className="page-item"
                                 onClick={handleNextClick}
+                                style={{ cursor: "pointer" }}
                               >
-                                <a
-                                  className="page-link"
-                                  aria-label="Next"
-                                  style={{ cursor: "pointer" }}
-                                >
+                                <a className="page-link" aria-label="Next">
                                   <span aria-hidden="true">»</span>
                                   <span className="visually-hidden">Next</span>
                                 </a>
                               </li>
-                              {totalPages > 5 &&
-                                currentPage < totalPages - 2 && (
-                                  <li
-                                    className="page-item"
-                                    onClick={() => handlePageClick(totalPages)}
-                                    style={{
-                                      cursor: "pointer",
-                                    }}
-                                  >
-                                    <a className="page-link">...{totalPages}</a>
-                                  </li>
-                                )}
                             </ul>
-                          </div>{" "}
+                          </div>
                         </nav>
                       </div>
-                      {/* <!-- end col --> */}
                     </div>
-
-                    {/* <!-- end row --> */}
                   </div>
                 </div>
               </div>
             </div>
           </div>
-          {/* <!-- end row --> */}
         </div>
-        {/* <!-- container --> */}
       </div>
-      {/* <!-- content --> */}
 
-      {/* <!-- Footer Start --> */}
       <footer
         className="footer"
         style={
@@ -350,28 +285,22 @@ const Exports = ({ collapsed }) => {
             <div className="col-md-6">
               <div className="text-md-end footer-links d-none d-sm-block">
                 <a
-                  href={`${
-                    import.meta.env.VITE_JARVIS_MARKETING_HELP
-                  }/about-us`}
+                  href={`${import.meta.env.VITE_JARVIS_MARKETING_HELP}/about-us`}
                   target="_blank"
                 >
                   About Us
                 </a>
                 <a
-                  href={`${
-                    import.meta.env.VITE_JARVIS_MARKETING_HELP
-                  }/help-center`}
+                  href={`${import.meta.env.VITE_JARVIS_MARKETING_HELP}/help-center`}
                   target="_blank"
                 >
                   Help
-                </a>{" "}
+                </a>
               </div>
             </div>
           </div>
         </div>
       </footer>
-
-      {/* <!-- end Footer --> */}
     </div>
   );
 };
