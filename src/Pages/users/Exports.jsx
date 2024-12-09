@@ -105,8 +105,22 @@ const Exports = ({ collapsed }) => {
             </div>
           </div>
           {/* <!-- end page title -->  */}
-
-          <div className="row">
+			<div className="row">
+			 <div className="col-12">
+			 <div
+			 style={{
+                                  fontSize: "20px",
+                                  fontWeight: "500",
+                                   padding: "50px",
+                                   textAlign: "center",
+                                   background: "#ff000d1f",
+                                   borderRadius: "20px",
+                                    border: "1px solid #ccc",
+                                }}>
+			 Bulk enrichment and data export features are temporarily under maintenance and will resume in a few days.</div>
+			 </div>
+			</div>
+         {/* <!--  <div className="row">
             <div className="col-12">
               <div className="card">
                 <div className="card-api">
@@ -220,7 +234,7 @@ const Exports = ({ collapsed }) => {
                               maxWidth: "100%",
                               overflowX: "auto",
                               display: "flex",
-                              // direction column in small screen
+                             
                               flexDirection: isSmallScreen ? "column" : "",
                             }}
                           >
@@ -236,7 +250,7 @@ const Exports = ({ collapsed }) => {
                                   value={itemsPerPage}
                                   onChange={handleItemsPerPageChange}
                                   style={{
-                                    // style for select
+                                   
                                     padding: "5px",
                                     borderRadius: "5px",
                                     border: "1px solid #ccc",
@@ -252,7 +266,7 @@ const Exports = ({ collapsed }) => {
                               </label>
                             </div>
                             <ul className="pagination pagination-rounded mb-0 pt-4">
-                              {/* first page */}
+                              {}
                               {getVisiblePages()?.length > 3 &&
                                 currentPage > 3 && (
                                   <li
@@ -318,15 +332,15 @@ const Exports = ({ collapsed }) => {
                           </div>{" "}
                         </nav>
                       </div>
-                      {/* <!-- end col --> */}
+                      
                     </div>
 
-                    {/* <!-- end row --> */}
+                    
                   </div>
                 </div>
               </div>
             </div>
-          </div>
+          </div>--> */}
           {/* <!-- end row --> */}
         </div>
         {/* <!-- container --> */}
