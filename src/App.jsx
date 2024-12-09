@@ -14,6 +14,7 @@ import VerifyEmail from "./Pages/auth/verifyEmail";
 import Layout from "./sections/Layout";
 import store from "./store";
 import PageTour from "./components/PageTour";
+import AccountSetupForm from "./Pages/auth/AccountSetupForm";
 
 function App() {
   const navigate = useNavigate();
@@ -56,6 +57,7 @@ function App() {
             {/* <Route path="/" element={<SplashScreen />} /> */}
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
+              <Route path="/accountsetupform" element={<AccountSetupForm />} />
             <Route path="/*" element={<Layout />} />
             {/* <Route path="/help" element={<Help />} />
             <Route path="/getting-start/:id" element={<GettingStarted />} /> */}

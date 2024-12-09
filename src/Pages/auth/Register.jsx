@@ -325,31 +325,9 @@ const Register = () => {
       });
   }, []);
 
-  const onSubmit = async (values) => {
-    // const cors_api_host = "https://cors-anywhere.herokuapp.com/";
-    // const cors_api_url = cors_api_host + "http://www.geoplugin.net/json.gp";
-    // const origin = window.location.origin;
-    // const url = cors_api_url + "?origin=" + origin;
-
-    // fetch(url, {
-    //   method: "GET",
-    //   headers: {
-    //     "Content-Type": "application/json",
-    //   },
-    // })
-    //   .then((response) => response.json())
-    //   .then(async (data) => {
-    //     const countryName = data.geoplugin_countryName;
-    //     const countryLat = data.geoplugin_latitude;
-    //     const countryLong = data.geoplugin_longitude;
-
-    //     console.log("Country:", countryName);
-    //     console.log("Latitude:", countryLat);
-    //     console.log("Longitude:", countryLong);
-
-    //   })
-    //   .catch((error) => console.error("Error fetching location data:", error));
+const onSubmit = async (values) => {
     try {
+      // Prepare initial data excluding companyName and mainActivity
       let data = {};
       if (token) {
         data = {
@@ -375,16 +353,91 @@ const Register = () => {
           },
         };
       }
-      await register({ body: data }).unwrap();
-      window.location.href =
-        import.meta.env.VITE_JARVIS_MARKETING + "/registration-successful";
-      toast.success("Registration Complete, Please verify your email to login");
+
+      // Log the submitted data (excluding companyName and mainActivity)
+      console.log("Submitted data:", data);
+
+      // Store user details in sessionStorage (without companyName and mainActivity)
+      sessionStorage.setItem("userDetails", JSON.stringify({
+        ...values,
+        role: data.role,
+        location: data.location,
+        customerRef: data.customerRef,
+      }));
+      console.log("Session Storage User Details:", JSON.parse(sessionStorage.getItem("userDetails")));
+
+      // Proceed to the next page
+      navigate("/accountsetupform");
+
+      // Optionally, clear authToken after navigation
       sessionStorage.removeItem("authToken");
+
     } catch (error) {
       console.log("error", error);
       toast.error(error.data.message);
     }
   };
+  
+  // const onSubmit = async (values) => {
+     // const cors_api_host = "https://cors-anywhere.herokuapp.com/";
+     // const cors_api_url = cors_api_host + "http://www.geoplugin.net/json.gp";
+     // const origin = window.location.origin;
+     // const url = cors_api_url + "?origin=" + origin;
+// 
+     // fetch(url, {
+       // method: "GET",
+       // headers: {
+         // "Content-Type": "application/json",
+       // },
+     // })
+       // .then((response) => response.json())
+       // .then(async (data) => {
+         // const countryName = data.geoplugin_countryName;
+         // const countryLat = data.geoplugin_latitude;
+         // const countryLong = data.geoplugin_longitude;
+// 
+         // console.log("Country:", countryName);
+         // console.log("Latitude:", countryLat);
+         // console.log("Longitude:", countryLong);
+// 
+       // })
+       // .catch((error) => console.error("Error fetching location data:", error));
+    // try {
+      // let data = {};
+      // if (token) {
+        // data = {
+          // ...values,
+          // role: "teammember",
+          // customerRef: JSON.parse(customerRef).customerRef,
+          // termsConditions: false,
+          // location: {
+            // country: location.countryName,
+            // lat: Number(location.latitude),
+            // lon: Number(location.longitude),
+          // },
+        // };
+      // } else {
+        // data = {
+          // ...values,
+          // role: "customer",
+          // termsConditions: false,
+          // location: {
+            // country: location.countryName,
+            // lat: Number(location.latitude),
+            // lon: Number(location.longitude),
+          // },
+        // };
+      // }
+      // await register({ body: data }).unwrap();
+      // window.location.href =
+        // import.meta.env.VITE_JARVIS_MARKETING + "/registration-successful";
+      // toast.success("Registration Complete, Please verify your email to login");
+      // sessionStorage.removeItem("authToken");
+    // } catch (error) {
+      // console.log("error", error);
+      // toast.error(error.data.message);
+    // }
+  // };
 
   const handleLoginResponse = (res, customType) => {
     dispatch(setCredentials({ ...res, token: res.token }));
