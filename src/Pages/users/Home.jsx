@@ -24,22 +24,7 @@ const Home = ({ collapsed }) => {
           {/* <!-- Start Content--> */}
           <div className="container-fluid">
             {/* <!-- start page title --> */}
-            <div className="row">
-			 <div className="col-12">
-			 <div
-			 style={{
-                                  fontSize: "20px",
-                                  fontWeight: "500",
-                                   padding: "50px",
-                                   textAlign: "center",
-                                   background: "#ff000d1f",
-                                   borderRadius: "20px",
-                                    border: "1px solid #ccc",
-                                     marginBottom: "10px",
-                                }}>
-			 Bulk enrichment and data export features are temporarily under maintenance and will resume in a few days.</div>
-			 </div>
-			</div>
+            
             <div className="row mt-1 extension_installed">
     	<div className="col-lg-6">
        
