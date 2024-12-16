@@ -57,6 +57,7 @@
     "react-flatpickr": "^3.10.13",
     "react-geocode": "^1.0.0-alpha.1",
     "react-geolocated": "^4.2.0",
+    "react-helmet": "^6.1.0",
     "react-hot-toast": "^2.4.1",
     "react-icons": "^5.2.1",
     "react-ipgeolocation": "^1.4.0",
